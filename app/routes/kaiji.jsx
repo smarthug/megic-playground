@@ -250,9 +250,9 @@ function EndCollisionBox(props) {
     // filter 써야겠네
     // console.log(obj);
     outBalls.map((v, i) => {
-      if (v.handle === obj.target.handle) {
-        obj.target.collider().setSensor(true);
-        obj.target.sleep();
+      if (v.handle === obj.rigidBody.handle) {
+        obj.collider.setSensor(true);
+        obj.rigidBody.sleep();
         // ref.current.visible = true
 
         v.mesh.visible = false;
