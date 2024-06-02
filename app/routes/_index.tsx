@@ -14,10 +14,10 @@ export default function Index() {
       <h1>Megic Playground</h1>
       <ul>
         <li>
-          <Link to={"/test"}>Test Page</Link>
+          <Link to={"/base"}>base</Link>
         </li>
         <li>
-          <Link to={"/base"}>base</Link>
+          <Link to={"/kaiji"}>kaiji</Link>
         </li>
       </ul>
     </div>
