@@ -25,10 +25,10 @@ const Experience = () => {
             (state) => state.score,
             (score) => {
                 if(score != prevScore) {
-                    setIsExploding(true)
-                    setTimeout(() => {
-                        setIsExploding(false)
-                    }, 2000)
+                    // setIsExploding(true)
+                    // setTimeout(() => {
+                    //     setIsExploding(false)
+                    // }, 2000)
                     setPrevScore(score);
                 }
             }
