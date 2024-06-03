@@ -18,17 +18,17 @@ const Experience = () => {
     })
     const [isExploding, setIsExploding] = useState()
 
-    const [prevScore, setPrevScore] = useState(0);
+    const [prevScore, setPrevScore] = useState(1000);
 
     useEffect(() => {
         const unsuscribeIsScored = useGame.subscribe(
             (state) => state.score,
             (score) => {
-                if(score != prevScore) {
-                    // setIsExploding(true)
-                    // setTimeout(() => {
-                    //     setIsExploding(false)
-                    // }, 2000)
+                if(score != prevScore && score > prevScore) {
+                    setIsExploding(true)
+                    setTimeout(() => {
+                        setIsExploding(false)
+                    }, 2000)
                     setPrevScore(score);
                 }
             }
@@ -54,7 +54,7 @@ const Experience = () => {
         >
             <group>
                 <Suspense fallback={<Fallback />}>
-                    {/* <Confetti isExploding={isExploding} rate={2} areaWidth={5} areaHeight={3} fallingHeight={6} /> */}
+                    <Confetti isExploding={isExploding} rate={2} areaWidth={5} areaHeight={3} fallingHeight={6} />
                     <Physics debug={debugPhysics}>
                         <Center>
                             <Level />
