@@ -54,7 +54,7 @@ const Experience = () => {
         >
             <group>
                 <Suspense fallback={<Fallback />}>
-                    <Confetti isExploding={isExploding} rate={2} areaWidth={5} areaHeight={3} fallingHeight={6} />
+                    {/* <Confetti isExploding={isExploding} rate={2} areaWidth={5} areaHeight={3} fallingHeight={6} /> */}
                     <Physics debug={debugPhysics}>
                         <Center>
                             <Level />
