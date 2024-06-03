@@ -22,6 +22,7 @@ export default function Table(props) {
     }, {collapsed: true})
 
     const increaseScore = useGame((state) => state.increment)
+    const decreaseScore = useGame((state) => state.decrement)
 
     const goal = () => {
         if(!isScored) {
@@ -42,6 +43,7 @@ export default function Table(props) {
         if (controlRef.current) {
             useGame.setState({ [isControlAPushed ? 'isControlAPushed' : 'isControlBPushed']: true })
             controlRef.current.position.y = 0.128 - 0.1
+            decreaseScore()
         }
     }
 

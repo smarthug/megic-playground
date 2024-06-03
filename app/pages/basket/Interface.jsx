@@ -5,7 +5,7 @@ const Interface = () => {
 
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 999, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff', fontSize: '1.25rem' }}>
-      <h1>{points} points</h1>
+      <h1>{points} megic points</h1>
     </div>
   );
 };

@@ -19,6 +19,9 @@ export default function Index() {
         <li>
           <Link to={"/kaiji"}>kaiji</Link>
         </li>
+        <li>
+          <Link to={"/basket"}>basket</Link>
+        </li>
       </ul>
     </div>
   );
