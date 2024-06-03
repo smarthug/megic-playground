@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Basketball';
+    src: local("Basketball"),
+        url("/fonts/Basketball.otf") format("truetype");
+}
 body {
     margin: 0;
+    font-family: 'Basketball', sans-serif;
 }
