@@ -74,8 +74,6 @@ export default function Player()
             position={ [ 0, 1, - 2 ] }
             debug={ false }
             capsuleRadius={ 0.4 }
-
-            disableFollowCam={ true }
             
             camInitDis={ - 25 }
             camMaxDis={ - 35 }

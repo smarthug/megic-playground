@@ -1,4 +1,4 @@
-import Main from "../pages/myPlayer";
+import Main from "../pages/player";
 
 export default function Test() {
   return (

@@ -2,14 +2,14 @@ import "./style.css?url";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { KeyboardControls } from "@react-three/drei";
-import Interface from "./Interface.jsx";
+// import Interface from "./Interface.jsx";
 import TouchControls from "./TouchControls.jsx";
-import { Leva } from 'leva'
+import { Leva } from "leva";
 
 export default function App() {
   return (
     <>
-    <Leva collapsed hidden />
+      <Leva collapsed hidden />
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -32,7 +32,7 @@ export default function App() {
         >
           <Experience />
         </Canvas>
-        <Interface />
+        
       </KeyboardControls>
     </>
   );

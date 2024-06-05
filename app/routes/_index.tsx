@@ -25,6 +25,9 @@ export default function Index() {
         <li>
           <Link to={"/player"}>player</Link>
         </li>
+        <li>
+          <Link to={"/complex-player"}>complex-player</Link>
+        </li>
       </ul>
     </div>
   );
