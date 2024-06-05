@@ -29,16 +29,17 @@ for(let i = 0; i < 15; i++)
 }
 const beamsGeometry = BufferGeometryUtils.mergeGeometries(geometries)
 
-export default forwardRef(function Beams({ color = 'red' }, ref)
+export default forwardRef(function Beams({  }, ref)
 {
-    const material = useRef()
+    // const material = useRef()
     
-    useFrame((_, delta) =>
-    {
-        material.current.uniforms.time.value += delta
-    })
+    // useFrame((_, delta) =>
+    // {
+    //     material.current.uniforms.time.value += delta
+    // })
 
     return <mesh ref={ ref } geometry={ beamsGeometry }>
-        <beamsMaterial ref={ material } color={ color } side={ DoubleSide } />
+        {/* <beamsMaterial ref={ material } color={ color } side={ DoubleSide } /> */}
+        <meshNormalMaterial />
     </mesh>
 })

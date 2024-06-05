@@ -6,6 +6,7 @@ import Effects from './Effects/Effects.jsx'
 import Player from './Player.jsx'
 import { useControls } from 'leva'
 import Levels from './Levels/Levels.jsx'
+import Map from './Levels/Map.jsx'
 import './Materials/Materials.jsx'
 import useGame from './stores/useGame.jsx'
 import { useEffect } from 'react'
@@ -37,7 +38,8 @@ export default function Experience()
         <Physics timeStep="vary" debug={ physicsSettings.debug } gravity={ [ 0, - 9.807 * 2, 0 ] }>
             <Lights />
             <Player />
-            <Levels />
+            {/* <Levels /> */}
+            <Map />
         </Physics>
 
     </>
