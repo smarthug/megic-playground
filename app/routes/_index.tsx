@@ -22,6 +22,9 @@ export default function Index() {
         <li>
           <Link to={"/basket"}>basket</Link>
         </li>
+        <li>
+          <Link to={"/player"}>player</Link>
+        </li>
       </ul>
     </div>
   );
