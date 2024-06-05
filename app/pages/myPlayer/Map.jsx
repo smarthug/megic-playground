@@ -1,7 +1,7 @@
 import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 
-export default function Floor({ size = 50 }) {
+export default function Floor({ size = 10 }) {
   const settings = useControls("floor", {
     color: { value: "#2a2a2a" },
   });
