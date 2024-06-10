@@ -51,7 +51,7 @@ export const Experience = ({ container }) => {
 
     createFloor();
     diceMesh = createDiceMesh();
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       diceArray.push(createDice());
       addDiceEvents(diceArray[i], i);
     }
