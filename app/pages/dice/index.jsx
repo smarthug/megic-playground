@@ -3,10 +3,10 @@ import * as CANNON from "cannon-es";
 import * as THREE from "three";
 import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 // import GUI from "https://cdn.jsdelivr.net/npm/lil-gui@0.18.2/+esm"
-import GUI from "lil-gui"
-import { OrbitControls} from "@react-three/drei";
+import GUI from "lil-gui";
+import { OrbitControls } from "@react-three/drei";
 import { useEffect } from "react";
-import { useThree  } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 // const containerEl = document.querySelector(".container");
 // const canvasEl = document.querySelector("#canvas");
@@ -51,7 +51,7 @@ export const Experience = ({ container }) => {
 
     createFloor();
     diceMesh = createDiceMesh();
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       diceArray.push(createDice());
       addDiceEvents(diceArray[i], i);
     }
@@ -59,15 +59,28 @@ export const Experience = ({ container }) => {
     createControls();
 
     throwMe();
-    render();
+    // render();
 
-    window.addEventListener("resize", updateSceneSize);
-    window.addEventListener("click", () => {});
+    // window.addEventListener("resize", updateSceneSize);
+    // window.addEventListener("click", () => {});
 
     return () => {
       // cleanup
     };
   }, []);
+
+  useFrame(() => {
+    if (simulationOn) {
+      simulation.step(1 / 60, 5000, 60);
+    } else {
+      physicsRender.fixedStep();
+      for (const dice of diceArray) {
+        dice.mesh.position.copy(dice.body[0].position);
+        dice.mesh.quaternion.copy(dice.body[0].quaternion);
+      }
+      // renderer.render(scene, camera);
+    }
+  });
 
   return (
     <>
@@ -474,12 +487,8 @@ function throwDice() {
 }
 
 function createControls() {
-    const gui = new GUI();
-    gui
-        .add(params, "desiredResult", 2, 12, 1)
-        .name("result")
-    const btnControl = gui
-        .add(params, "throw")
-        .name("throw!")
-    throwBtn = btnControl.domElement.querySelector("button > .name");
+  const gui = new GUI();
+  gui.add(params, "desiredResult", 2, 12, 1).name("result");
+  const btnControl = gui.add(params, "throw").name("throw!");
+  throwBtn = btnControl.domElement.querySelector("button > .name");
 }
