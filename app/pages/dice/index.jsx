@@ -78,7 +78,7 @@ export const Experience = ({ container }) => {
         dice.mesh.position.copy(dice.body[0].position);
         dice.mesh.quaternion.copy(dice.body[0].quaternion);
       }
-      renderer.render(scene, camera);
+      // renderer.render(scene, camera);
     }
   });
 

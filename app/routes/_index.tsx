@@ -34,6 +34,9 @@ export default function Index() {
         <li>
           <Link to={"/dice"}>dice-manipulated</Link>
         </li>
+        <li>
+          <Link to={"/dice-simple"}>dice-simple</Link>
+        </li>
       </ul>
     </div>
   );
