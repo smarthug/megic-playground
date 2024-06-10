@@ -3,6 +3,7 @@ import * as CANNON from "cannon-es";
 import * as THREE from "three";
 import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 // import GUI from "https://cdn.jsdelivr.net/npm/lil-gui@0.18.2/+esm"
+import GUI from "lil-gui"
 import { OrbitControls} from "@react-three/drei";
 import { useEffect } from "react";
 import { useThree  } from "@react-three/fiber";
@@ -50,12 +51,12 @@ export const Experience = ({ container }) => {
 
     createFloor();
     diceMesh = createDiceMesh();
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       diceArray.push(createDice());
       addDiceEvents(diceArray[i], i);
     }
 
-    // createControls();
+    createControls();
 
     throwMe();
     render();
@@ -408,7 +409,7 @@ function addDiceEvents(dice, diceIdx) {
           } else {
             // match found => render using current startPos
             simulationOn = false;
-            // throwBtn.innerHTML = "throw!";
+            throwBtn.innerHTML = "throw!";
             throwDice();
           }
         }
@@ -442,7 +443,7 @@ function throwDice() {
   const quaternion = new THREE.Quaternion();
 
   if (simulationOn) {
-    // throwBtn.innerHTML = "calculating a throw...";
+    throwBtn.innerHTML = "calculating a throw...";
     currentResult = [0, 0];
     diceArray.forEach((d) => {
       d.startPos = [Math.random(), Math.random(), Math.random()];
@@ -472,13 +473,13 @@ function throwDice() {
   });
 }
 
-// function createControls() {
-//     const gui = new GUI();
-//     gui
-//         .add(params, "desiredResult", 2, 12, 1)
-//         .name("result")
-//     const btnControl = gui
-//         .add(params, "throw")
-//         .name("throw!")
-//     throwBtn = btnControl.domElement.querySelector("button > .name");
-// }
+function createControls() {
+    const gui = new GUI();
+    gui
+        .add(params, "desiredResult", 2, 12, 1)
+        .name("result")
+    const btnControl = gui
+        .add(params, "throw")
+        .name("throw!")
+    throwBtn = btnControl.domElement.querySelector("button > .name");
+}
