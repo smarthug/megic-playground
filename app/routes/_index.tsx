@@ -37,6 +37,9 @@ export default function Index() {
         <li>
           <Link to={"/dice-simple"}>dice-simple</Link>
         </li>
+        <li>
+          <Link to={"/uikit-test"}>uikit-test</Link>
+        </li>
       </ul>
     </div>
   );
