@@ -33,7 +33,7 @@ import { Experience } from "../pages/uikit";
 function App() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Canvas shadows camera={{ position: [3, 3, 3], fov: 30 }}>
+      <Canvas shadows camera={{ position: [0, 25, 25], fov: 45 }}>
         <color attach="background" args={["#ececec"]} />
         <Experience />
       </Canvas>

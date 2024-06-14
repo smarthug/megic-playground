@@ -7,6 +7,8 @@ import { OrbitControls } from "@react-three/drei";
 import { useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
+import { useDiceStore } from "./useDiceStore";
+
 // const canvasEl = document.querySelector('#canvas');
 // const scoreResult = document.querySelector('#score-result');
 // const rollBtn = document.querySelector('#roll-btn');
@@ -30,7 +32,7 @@ const diceArray = [];
 // window.addEventListener('dblclick', throwDice);
 // rollBtn.addEventListener('click', throwDice);
 
-export const Experience = ({ container }) => {
+export const DiceGame = ({ container }) => {
     const three = useThree();
     // renderer, scene, camera
     renderer = three.gl;
@@ -55,7 +57,7 @@ export const Experience = ({ container }) => {
       diceMesh = createDiceMesh();
       for (let i = 0; i < params.numberOfDice; i++) {
           diceArray.push(createDice());
-          addDiceEvents(diceArray[i]);
+          addDiceEvents(diceArray[i],i);
       }
   
       throwDice();
@@ -65,7 +67,7 @@ export const Experience = ({ container }) => {
   
       return () => {
         // cleanup
-        window.removeEventListener('dblclick', throwDice);
+        // window.removeEventListener('dblclick', throwDice);
       };
     }, []);
   
@@ -89,11 +91,11 @@ export const Experience = ({ container }) => {
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
-        <OrbitControls />
-        {/* <mesh>
+        {/* <OrbitControls /> */}
+        <mesh>
           <boxGeometry />
           <meshNormalMaterial />
-        </mesh> */}
+        </mesh>
       </>
     );
   };
@@ -155,7 +157,7 @@ function createFloor() {
         })
     )
     floor.receiveShadow = true;
-    floor.position.y = -7;
+    // floor.position.y = -7;
     floor.quaternion.setFromAxisAngle(new THREE.Vector3(-1, 0, 0), Math.PI * .5);
     scene.add(floor);
 
@@ -301,7 +303,7 @@ function createInnerGeometry() {
     ], false);
 }
 
-function addDiceEvents(dice) {
+function addDiceEvents(dice,i) {
     dice.body.addEventListener('sleep', (e) => {
 
         dice.body.allowSleep = false;
@@ -318,21 +320,21 @@ function addDiceEvents(dice) {
 
         if (isZero(euler.z)) {
             if (isZero(euler.x)) {
-                showRollResults(1);
+                showRollResults(1,i);
             } else if (isHalfPi(euler.x)) {
-                showRollResults(4);
+                showRollResults(4,i);
             } else if (isMinusHalfPi(euler.x)) {
-                showRollResults(3);
+                showRollResults(3,i);
             } else if (isPiOrMinusPi(euler.x)) {
-                showRollResults(6);
+                showRollResults(6,i);
             } else {
                 // landed on edge => wait to fall on side and fire the event again
                 dice.body.allowSleep = true;
             }
         } else if (isHalfPi(euler.z)) {
-            showRollResults(2);
+            showRollResults(2,i);
         } else if (isMinusHalfPi(euler.z)) {
-            showRollResults(5);
+            showRollResults(5,i);
         } else {
             // landed on edge => wait to fall on side and fire the event again
             dice.body.allowSleep = true;
@@ -340,13 +342,23 @@ function addDiceEvents(dice) {
     });
 }
 
-function showRollResults(score) {
+function showRollResults(score,i) {
     // if (scoreResult.innerHTML === '') {
     //     scoreResult.innerHTML += score;
     // } else {
     //     scoreResult.innerHTML += ('+' + score);
     // }
-    console.log(score);
+    console.log(score,i);
+    if(i === 0) {
+        // useDiceStore.getState().setFirstDice(score);
+        useDiceStore.setState({firstDice: score})
+        useDiceStore.setState({isFirstDiceRolling: false})
+    } else {
+        // useDiceStore.getState().setSecondDice(score);
+        useDiceStore.setState({secondDice: score})
+        useDiceStore.setState({isSecondDiceRolling: false})
+    }
+
 }
 
 function render() {
@@ -367,15 +379,17 @@ function updateSceneSize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function throwDice() {
+export function throwDice() {
     // scoreResult.innerHTML = '';
-
+    useDiceStore.setState({isFirstDiceRolling: true})
+    useDiceStore.setState({isSecondDiceRolling: true})
     diceArray.forEach((d, dIdx) => {
 
         d.body.velocity.setZero();
         d.body.angularVelocity.setZero();
 
-        d.body.position = new CANNON.Vec3(6, dIdx * 1.5, 0);
+        d.body.position = new CANNON.Vec3(6, dIdx * 1.5+7, 0);
+        // d.body.position = new CANNON.Vec3(3, dIdx * 6, 0);
         d.mesh.position.copy(d.body.position);
 
         d.mesh.rotation.set(2 * Math.PI * Math.random(), 0, 2 * Math.PI * Math.random())
