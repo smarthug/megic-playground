@@ -91,11 +91,7 @@ export const DiceGame = ({ container }) => {
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
-        {/* <OrbitControls /> */}
-        <mesh>
-          <boxGeometry />
-          <meshNormalMaterial />
-        </mesh>
+       
       </>
     );
   };
