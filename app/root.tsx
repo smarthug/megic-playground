@@ -7,6 +7,12 @@ import {
 } from "@remix-run/react";
 import styles from "./styles/global.css?url";
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+
 export const links = () => {
   return [
     { rel: "stylesheet", href: styles },
