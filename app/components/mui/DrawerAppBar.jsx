@@ -13,7 +13,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { CssBaseline } from "@mui/material";
+import { Badge, CssBaseline, Menu, MenuItem } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 const drawerWidth = 240;
 // const navItems = ['Home', 'About', 'Contact'];
@@ -21,6 +23,10 @@ const drawerWidth = 240;
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -32,12 +38,54 @@ function DrawerAppBar(props) {
         MEGIC
       </Typography>
       <Divider />
-      <List></List>
+      <List>
+        <ListItem key={"discord"} disablePadding>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText primary={"discord"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
     </Box>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMobileMenuClose = () => {
+    // setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Inventory</MenuItem>
+    </Menu>
+  );
 
   return (
     <>
@@ -56,13 +104,62 @@ function DrawerAppBar(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-            MEGIC
+            {/* MEGIC */}
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}></Box>
+          {/* <Box sx={{ display: { xs: "none", sm: "block" } }}></Box> */}
+
+          {/* <Box sx={{ flexGrow: 1 }} /> */}
+          <Box sx={{ flexGrow: 1 }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              //   onClick={handleDrawerToggle}
+              sx={{ mr: 2 }}
+            >
+              <AttachMoneyIcon />
+              <Typography variant="body1" component="span" sx={{ flexGrow: 1 }}>
+                100,000,000
+              </Typography>
+            </IconButton>
+          </Box>
+
+          <Box sx={{ display: { xs: "flex", md: "flex" } }}>
+            {/* <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton> */}
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
+      {renderMenu}
       <nav>
         <Drawer
           container={container}
