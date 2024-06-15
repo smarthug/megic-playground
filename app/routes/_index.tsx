@@ -40,6 +40,9 @@ export default function Index() {
         <li>
           <Link to={"/uikit-test"}>uikit-test</Link>
         </li>
+        <li>
+          <Link to={"/mui"}>mui</Link>
+        </li>
       </ul>
     </div>
   );

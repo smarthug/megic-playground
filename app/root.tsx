@@ -5,6 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
 import styles from "./styles/global.css?url";
 
 import '@fontsource/roboto/300.css';
@@ -30,6 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+
         <ScrollRestoration />
         <Scripts />
       </body>
