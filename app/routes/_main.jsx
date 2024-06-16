@@ -3,6 +3,7 @@ import BottomNav from "../components/mui/BottomNav";
 
 import { Box, Container } from "@mui/material";
 import { styled } from "@mui/system";
+import { Outlet } from "@remix-run/react";
 
 const RootContainer = styled(Container)({
   height: "100vh",
@@ -20,7 +21,7 @@ const ContentBox = styled(Box)({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  // backgroundColor: "lightblue",
+//   backgroundColor: "lightblue",
 });
 
 // export const Experience = () => {
@@ -41,7 +42,7 @@ function App() {
       <DrawerAppBar />
       <ContentBox>
         {/* 여기에 콘텐츠를 추가하세요 */}
-        <h1>Full Screen Content</h1>
+        <Outlet />
       </ContentBox>
       <BottomNav />
     </RootContainer>

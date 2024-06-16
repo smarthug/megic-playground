@@ -1,24 +1,59 @@
+import PublicIcon from "@mui/icons-material/Public";
 
-import FolderIcon from "@mui/icons-material/Folder";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PublicIcon from '@mui/icons-material/Public';
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+// import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-
-import StorefrontIcon from '@mui/icons-material/Storefront';
+import StorefrontIcon from "@mui/icons-material/Storefront";
 
 import { useState } from "react";
-import { Paper,BottomNavigation,BottomNavigationAction } from "@mui/material";
+import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
+
+import { useNavigate, useLocation } from "@remix-run/react";
 
 export default function LabelBottomNavigation() {
-  const [value, setValue] = useState("recents");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the current path to set the value
+  const currentPath = location.pathname;
+  console.log(currentPath);
+
+  // Determine the value based on the current path
+  let initialValue;
+  switch (currentPath) {
+    case "/shop":
+      initialValue = "0";
+      break;
+    case "/world":
+      initialValue = "1";
+      break;
+    case "/game":
+      initialValue = "2";
+      break;
+    default:
+      initialValue = "0";
+      break;
+  }
+
+  const [value, setValue] = useState(initialValue);
+  console.log(value);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    switch (newValue) {
+      case "0":
+        navigate("/shop");
+        break;
+      case "1":
+        navigate("/world");
+        break;
+      case "2":
+        navigate("/game");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -26,25 +61,25 @@ export default function LabelBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
-      <BottomNavigation showLabels={false} value={value} onChange={handleChange}>
+      <BottomNavigation
+        showLabels={false}
+        value={`${value}`}
+        onChange={handleChange}
+      >
         <BottomNavigationAction
           label="Shop"
-          value="shop"
+          value="0"
           icon={<StorefrontIcon />}
         />
-        <BottomNavigationAction
-          label="World"
-          value="world"
-          icon={<PublicIcon />}
-        />
+        <BottomNavigationAction label="World" value="1" icon={<PublicIcon />} />
         {/* <BottomNavigationAction
           label="Casino"
           value="casino"
           icon={<MonetizationOnIcon />}
         /> */}
-         <BottomNavigationAction
+        <BottomNavigationAction
           label="Game"
-          value="game"
+          value="2"
           icon={<SportsEsportsIcon />}
         />
       </BottomNavigation>
