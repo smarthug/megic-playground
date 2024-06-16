@@ -8,17 +8,19 @@ import {
 
 import styles from "./styles/global.css?url";
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
+import { theme } from "./styles/theme";
+
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 
 export const links = () => {
-  return [
-    { rel: "stylesheet", href: styles },
-  ];
-}
+  return [{ rel: "stylesheet", href: styles }];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -40,7 +42,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Outlet />
+    </ThemeProvider>
+  );
 }
 
 export function HydrateFallback() {

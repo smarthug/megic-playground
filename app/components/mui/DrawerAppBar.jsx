@@ -91,7 +91,7 @@ function DrawerAppBar(props) {
   return (
     <>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar color="primary" component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
