@@ -1,6 +1,4 @@
 
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FolderIcon from "@mui/icons-material/Folder";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -14,7 +12,7 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 
 import { useState } from "react";
-import { Paper } from "@mui/material";
+import { Paper,BottomNavigation,BottomNavigationAction } from "@mui/material";
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = useState("recents");
