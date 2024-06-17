@@ -15,8 +15,8 @@ import "@fontsource/roboto/700.css";
 
 import { theme } from "./styles/theme";
 
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+// import { ThemeProvider } from "@mui/material";
+import { CssBaseline,ThemeProvider } from "@mui/material";
 
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];

@@ -12,6 +12,7 @@ export default function World() {
         }}
     >
       {/* <Main /> */}
+      <h1>World</h1>
     </div>
   );
 }
