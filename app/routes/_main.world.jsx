@@ -1,18 +1,19 @@
-import Main from "../pages/myPlayer";
+import Main from "../pages/world";
 
 export default function World() {
   return (
     <div
-        style={{
-            width: "100vw",
-            height: "50vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        }}
+      style={{
+        width: "100vw",
+        // height: "50vh",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      {/* <Main /> */}
-      <h1>World</h1>
+      {/* <h1>World</h1> */}
+      <Main />
     </div>
   );
 }
