@@ -1,6 +1,8 @@
 import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 
+import { Tent } from "./Stylized_tent";
+
 export default function Floor({ size = 10 }) {
   const settings = useControls("floor", {
     color: { value: "#2a2a2a" },
@@ -12,6 +14,8 @@ export default function Floor({ size = 10 }) {
         <boxGeometry args={[1, 1, 1]} />
         <meshLambertMaterial dithering color={settings.color} />
       </mesh>
+
+      <Tent scale={0.01} position-y={1} />
     </RigidBody>
   );
 }

@@ -30,7 +30,7 @@ export default function Experience()
     
         {/* <Effects /> */}
 
-        {/* <color args={ [ '#111111' ] } attach="background" /> */}
+        <color args={ [ '#111111' ] } attach="background" />
 
         {/* <Perf position="top-left" /> */}
 

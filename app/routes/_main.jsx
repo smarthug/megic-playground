@@ -5,7 +5,17 @@ import { Box, Container } from "@mui/material";
 import { styled } from "@mui/system";
 import { Outlet } from "@remix-run/react";
 
-const RootContainer = styled(Container)({
+// const RootContainer = styled(Container)({
+//   height: "100vh",
+//   display: "flex",
+//   flexDirection: "column",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   overflow: "hidden",
+//   padding: 0,
+// });
+
+const RootContainer = styled(Box)({
   height: "100vh",
   display: "flex",
   flexDirection: "column",
