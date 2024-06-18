@@ -15,7 +15,7 @@ export default function Floor({ size = 10 }) {
         <meshLambertMaterial dithering color={settings.color} />
       </mesh>
 
-      <Tent scale={0.01} position-y={1} />
+      <Tent scale={0.015} position-y={1.5} />
     </RigidBody>
   );
 }
