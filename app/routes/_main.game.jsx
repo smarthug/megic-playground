@@ -5,7 +5,7 @@ export default function Game() {
     <div>
       <h1>Game</h1>
       <ul>
-        <li>
+        {/* <li>
           <Link to={"/base"}>base</Link>
         </li>
         <li>
@@ -34,6 +34,9 @@ export default function Game() {
         </li>
         <li>
           <Link to={"/mui"}>mui</Link>
+        </li> */}
+         <li>
+          <Link to={"/chohan"}>chohan</Link>
         </li>
       </ul>
     </div>
