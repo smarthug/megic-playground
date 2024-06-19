@@ -1,6 +1,5 @@
-import { Canvas } from "@react-three/fiber";
 // import { Experience } from "./components/Experience";
-import { Experience } from "../pages/chohan";
+import Experience from "../pages/chohan";
 // import { OrbitControls } from "@react-three/drei";
 // import { Fullscreen, Container } from '@react-three/uikit'
 
@@ -31,13 +30,8 @@ import { Experience } from "../pages/chohan";
 // };
 
 function App() {
-  return (
-    <Canvas shadows camera={{ position: [0, 25, 25], fov: 45 }}>
-      <color attach="background" args={["#ececec"]} />
-      <Experience />
-    </Canvas>
-  );
-} 
+  return <Experience />;
+}
 
 export default App;
 

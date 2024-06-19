@@ -20,4 +20,6 @@ export const useDiceStore = create((set) => ({
   setIsSecondDiceRolling: (isSecondDiceRolling) => set({ isSecondDiceRolling }),
   //   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
   //   removeAllBears: () => set({ bears: 0 }),
+  diceArray: [],
+  setDiceArray: (diceArray) => set({ diceArray }),
 }));

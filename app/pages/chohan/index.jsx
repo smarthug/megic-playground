@@ -13,6 +13,8 @@ import { DollarSign } from "@react-three/uikit-lucide";
 import { DiceGame, throwDice } from "./dice";
 
 import { useDiceStore } from "./useDiceStore";
+import { Canvas } from "@react-three/fiber";
+import { Box, Paper } from "@mui/material";
 
 function TextOnCard() {
   const firstDice = useDiceStore((state) => state.firstDice);
@@ -126,7 +128,7 @@ function Test() {
   console.log("test");
 }
 
-export const Experience = () => {
+const Experience = () => {
   return (
     <>
       <OrbitControls maxPolarAngle={Math.PI / 2} />
@@ -140,7 +142,7 @@ export const Experience = () => {
           // onDoubleClick={Test}
           onClick={throwDice}
         >
-          <Container>
+          <Container marginTop={56}>
             <TextOnCard />
           </Container>
           <Container flexGrow={1}>{/* <TextOnCard /> */}</Container>
@@ -152,6 +154,7 @@ export const Experience = () => {
             flexDirection={"row"}
             gap={0}
             margin={8}
+            marginBottom={56}
           >
             <Container justifyContent={"center"} flexGrow={1}>
               <InputsOnCard />
@@ -170,6 +173,27 @@ export const Experience = () => {
     </>
   );
 };
+
+function App() {
+  return (
+    <>
+      <Canvas shadows camera={{ position: [0, 25, 25], fov: 45 }}>
+        <color attach="background" args={["#ececec"]} />
+        <Experience />
+      </Canvas>
+
+      <Box style={{
+        // display: "fixed",
+        marginBottom: 56,
+        backgroundColor: "red",
+      }}>
+        test
+      </Box>
+    </>
+  );
+}
+
+export default App;
 
 // export const Experience = () => {
 //   return (
