@@ -7,7 +7,7 @@ export const useDiceStore = create((set) => ({
 //   setIsOdd: (isOdd) => set({ isOdd }),
   isYourGuessOdd: false,
   setIsYourGuessOdd: (isYourGuessOdd) => set({ isYourGuessOdd }),
-  betAmount: 100,
+  betAmount: 0,
   setBetAmount: (betAmount) => set({ betAmount }),
 
   firstDice: 1,

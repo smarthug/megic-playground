@@ -18,10 +18,14 @@ import {
 import { AccountCircle } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+// import { useMegicStore } from "../../utils/useMegicStore";
+import { useMegicStore } from "../../utils/useMegicStore";
 const drawerWidth = 240;
 // const navItems = ['Home', 'About', 'Contact'];
 
 function DrawerAppBar(props) {
+  const megicPoints = useMegicStore((state) => state.megicPoints);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -123,7 +127,7 @@ function DrawerAppBar(props) {
             >
               <AttachMoneyIcon />
               <Typography variant="body1" component="span" sx={{ flexGrow: 1 }}>
-                100,000,000
+                {`${megicPoints}`}
               </Typography>
             </IconButton>
           </Box>

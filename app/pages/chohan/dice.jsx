@@ -63,7 +63,7 @@ export const DiceGame = ({ container }) => {
       addDiceEvents(diceArray[i], i);
     }
 
-    throwDice();
+    // throwDice();
 
     //   window.addEventListener('dblclick', throwDice);
 

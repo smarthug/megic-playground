@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { Fullscreen, Container, Root } from "@react-three/uikit";
 
@@ -14,9 +14,12 @@ import { DiceGame, throwDice } from "./dice";
 
 import { useDiceStore } from "./useDiceStore";
 import { Canvas } from "@react-three/fiber";
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Radio, TextField } from "@mui/material";
+
+import { useMegicStore} from '../../utils/useMegicStore'
 
 function TextOnCard() {
+  const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
   const firstDice = useDiceStore((state) => state.firstDice);
   const secondDice = useDiceStore((state) => state.secondDice);
 
@@ -30,22 +33,51 @@ function TextOnCard() {
 
   const getOddEven = (sum) => (sum % 2 === 0 ? "Even" : "Odd");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    console.log("firstDice", firstDice);
+    if (firstDice === 0 || secondDice === 0) return;
     if (isFirstDiceRolling || isSecondDiceRolling) return;
     if (isYourGuessOdd) {
       if ((firstDice + secondDice) % 2 === 0) {
-        console.log("You lose!");
+        lose();
       } else {
-        console.log("You win!");
+        win();
       }
     } else {
       if ((firstDice + secondDice) % 2 === 0) {
-        console.log("You win!");
+        win();
       } else {
-        console.log("You lose!");
+        lose();
       }
     }
   }, [isFirstDiceRolling, isSecondDiceRolling]);
+
+  function win() {
+    console.log("win");
+    // useMegicStore.getState().increaseMegicPoints(1)
+    const betAmount = useDiceStore.getState().betAmount;
+    // console.log(betAmount);
+    const prev = useMegicStore.getState().megicPoints;
+    // console.log(prev);
+    const result = Number(prev) + (Number(betAmount)*2);
+    // console.log(result);
+    localStorage.setItem("megicPoints", result);
+
+    setMegicPoints(result);
+  }
+
+  function lose() {
+    console.log("lose");
+    // useMegicStore.getState().decreaseMegicPoints(1)
+    const betAmount = useDiceStore.getState().betAmount;
+    // console.log(betAmount);
+    const prev = useMegicStore.getState().megicPoints;
+    // console.log(prev);
+    const result = Number(prev) - Number(betAmount);
+    // console.log(result);
+    localStorage.setItem("megicPoints", result);
+    setMegicPoints(result);
+  }
   return (
     <Card
       borderRadius={32}
@@ -124,6 +156,54 @@ function OddEvenTabs() {
   );
 }
 
+// function OddEvenTabs() {
+//   const [selectedValue, setSelectedValue] = useState("a");
+
+//   const handleChange = (event) => {
+//     setSelectedValue(event.target.value);
+//   };
+
+//   return (
+//     <div>
+//       <Radio
+//         checked={selectedValue === "a"}
+//         onChange={handleChange}
+//         color="secondary"
+//         value="a"
+//         name="radio-buttons"
+//         inputProps={{ "aria-label": "A" }}
+//         labelPlacement="top"
+//         label="Odd"
+//       />
+//       <Radio
+//         checked={selectedValue === "b"}
+//         onChange={handleChange}
+//         value="b"
+//         name="radio-buttons"
+//         inputProps={{ "aria-label": "B" }}
+//         labelPlacement="top"
+//         label="Even"
+//       />
+//     </div>
+//   );
+// }
+
+function BetInput() {
+  const betAmount = useDiceStore((state) => state.betAmount);
+  const setBetAmount = useDiceStore((state) => state.setBetAmount);
+  return (
+    <TextField
+      type="number"
+      id="outlined-controlled"
+      label="Bet Amount"
+      value={betAmount}
+      onChange={(event) => {
+        setBetAmount(event.target.value);
+      }}
+    />
+  );
+}
+
 function Test() {
   console.log("test");
 }
@@ -154,11 +234,8 @@ const Experience = () => {
             flexDirection={"row"}
             gap={0}
             margin={8}
-            marginBottom={56}
+            marginBottom={28}
           >
-            <Container justifyContent={"center"} flexGrow={1}>
-              <InputsOnCard />
-            </Container>
             <Container justifyContent={"center"} flexGrow={1}>
               <OddEvenTabs />
             </Container>
@@ -182,12 +259,22 @@ function App() {
         <Experience />
       </Canvas>
 
-      <Box style={{
-        // display: "fixed",
-        marginBottom: 56,
-        backgroundColor: "red",
-      }}>
-        test
+      <Box
+        // width="100%"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          // display: "fixed",
+          // paddingBottom: 56 + 28,
+          // padding: 56,
+          // backgroundColor: "#ececec",
+          marginTop: 16,
+          marginBottom: 56+16,
+        }}
+      >
+        {/* <OddEvenTabs /> */}
+        <BetInput />
       </Box>
     </>
   );

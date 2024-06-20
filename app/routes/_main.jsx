@@ -4,6 +4,8 @@ import BottomNav from "../components/mui/BottomNav";
 import { Box, Container } from "@mui/material";
 import { styled } from "@mui/system";
 import { Outlet } from "@remix-run/react";
+import { useEffect } from "react";
+import { useMegicStore } from "../utils/useMegicStore";
 
 // const RootContainer = styled(Container)({
 //   height: "100vh",
@@ -48,6 +50,11 @@ const ContentBox = styled(Box)({
 // };
 
 function App() {
+
+  useEffect(() => {
+    const prevPoints = localStorage.getItem("megicPoints") || 1000;
+    useMegicStore.setState({ megicPoints: prevPoints });
+  }, []);
   return (
     <RootContainer>
       <DrawerAppBar />

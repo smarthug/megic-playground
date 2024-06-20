@@ -1,5 +1,7 @@
 // import { Experience } from "./components/Experience";
+import { useEffect } from "react";
 import Experience from "../pages/chohan";
+import { useMegicStore } from "../utils/useMegicStore";
 // import { OrbitControls } from "@react-three/drei";
 // import { Fullscreen, Container } from '@react-three/uikit'
 
@@ -30,6 +32,7 @@ import Experience from "../pages/chohan";
 // };
 
 function App() {
+  
   return <Experience />;
 }
 
