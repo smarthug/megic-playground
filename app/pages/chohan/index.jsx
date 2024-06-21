@@ -14,12 +14,11 @@ import { DiceGame, throwDice } from "./dice";
 
 import { useDiceStore } from "./useDiceStore";
 import { Canvas } from "@react-three/fiber";
-import { Box, Paper, TextField } from "@mui/material";
+import { Box, Paper, TextField ,ToggleButton,ToggleButtonGroup} from "@mui/material";
 
 import { useMegicStore } from "../../utils/useMegicStore";
 
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+
 
 function TextOnCard() {
   const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
