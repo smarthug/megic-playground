@@ -14,9 +14,12 @@ import { DiceGame, throwDice } from "./dice";
 
 import { useDiceStore } from "./useDiceStore";
 import { Canvas } from "@react-three/fiber";
-import { Box, Paper, Radio, TextField } from "@mui/material";
+import { Box, Paper, TextField } from "@mui/material";
 
-import { useMegicStore} from '../../utils/useMegicStore'
+import { useMegicStore } from "../../utils/useMegicStore";
+
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 function TextOnCard() {
   const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
@@ -59,7 +62,7 @@ function TextOnCard() {
     // console.log(betAmount);
     const prev = useMegicStore.getState().megicPoints;
     // console.log(prev);
-    const result = Number(prev) + (Number(betAmount)*2);
+    const result = Number(prev) + Number(betAmount) * 2;
     // console.log(result);
     localStorage.setItem("megicPoints", result);
 
@@ -138,21 +141,46 @@ function InputsOnCard() {
 //   );
 // }
 
+// function OddEvenTabs() {
+//   const setIsYourGuessOdd = useDiceStore((state) => state.setIsYourGuessOdd);
+//   function onActiveChange(value) {
+//     console.log(value);
+//     setIsYourGuessOdd(value === "1");
+//   }
+//   return (
+//     <Tabs onValueChange={onActiveChange} defaultValue="2">
+//       <TabsButton value="1">
+//         <Text>Odd</Text>
+//       </TabsButton>
+//       <TabsButton value="2">
+//         <Text>Even</Text>
+//       </TabsButton>
+//     </Tabs>
+//   );
+// }
+
 function OddEvenTabs() {
   const setIsYourGuessOdd = useDiceStore((state) => state.setIsYourGuessOdd);
-  function onActiveChange(value) {
-    console.log(value);
-    setIsYourGuessOdd(value === "1");
-  }
+  const isYourGuessOdd = useDiceStore((state) => state.isYourGuessOdd);
+  // const tmpValue =
+
+  const handleChange = (event, newAlignment) => {
+    // setAlignment(newAlignment);
+    console.log(newAlignment);
+    setIsYourGuessOdd(newAlignment);
+  };
+
   return (
-    <Tabs onValueChange={onActiveChange} defaultValue="2">
-      <TabsButton value="1">
-        <Text>Odd</Text>
-      </TabsButton>
-      <TabsButton value="2">
-        <Text>Even</Text>
-      </TabsButton>
-    </Tabs>
+    <ToggleButtonGroup
+      color="primary"
+      value={isYourGuessOdd}
+      exclusive
+      onChange={handleChange}
+      aria-label="Platform"
+    >
+      <ToggleButton value={true}>Odd</ToggleButton>
+      <ToggleButton value={false}>Even</ToggleButton>
+    </ToggleButtonGroup>
   );
 }
 
@@ -237,7 +265,7 @@ const Experience = () => {
             marginBottom={28}
           >
             <Container justifyContent={"center"} flexGrow={1}>
-              <OddEvenTabs />
+              {/* <OddEvenTabs /> */}
             </Container>
           </Container>
         </Container>
@@ -254,27 +282,56 @@ const Experience = () => {
 function App() {
   return (
     <>
+      {/* <Box
+        style={{
+          flex: 1,
+          // height: "100vh",
+          margin: 0,
+          padding: 0,
+        }}
+      >
+      </Box> */}
+
       <Canvas shadows camera={{ position: [0, 25, 25], fov: 45 }}>
         <color attach="background" args={["#ececec"]} />
         <Experience />
       </Canvas>
-
       <Box
         // width="100%"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
+          // display: "flex",
+          // flexDirection: "column",
+          // justifyContent: "flex-end",
           // display: "fixed",
           // paddingBottom: 56 + 28,
           // padding: 56,
           // backgroundColor: "#ececec",
-          marginTop: 16,
-          marginBottom: 56+16,
+          position: "fixed",
+          bottom: 56,
+          width: "100%",
+          padding: 8,
+          // marginTop: 16,
+          // marginBottom: 56 + 16,
         }}
       >
-        {/* <OddEvenTabs /> */}
-        <BetInput />
+        <Paper
+          style={{
+            width: "100%",
+            display: "flex",
+            elevation: 0,
+          }}
+        >
+          <BetInput />
+          <Box
+            style={{
+              flex:1,
+              backgroundColor: "#ececec",
+            }}
+          >
+
+          </Box>
+          <OddEvenTabs />
+        </Paper>
       </Box>
     </>
   );
