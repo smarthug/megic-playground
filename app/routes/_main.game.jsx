@@ -35,8 +35,11 @@ export default function Game() {
         <li>
           <Link to={"/mui"}>mui</Link>
         </li> */}
-         <li>
+        <li>
           <Link to={"/chohan"}>chohan</Link>
+        </li>
+        <li>
+          <Link to={"/popcat"}>popcat</Link>
         </li>
       </ul>
     </div>
