@@ -32,7 +32,7 @@ export default function LabelBottomNavigation() {
       initialValue = "2";
       break;
     default:
-      initialValue = "0";
+      initialValue = "2";
       break;
   }
 

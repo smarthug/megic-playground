@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
+import {useMegicStore} from "../../utils/useMegicStore";
+
 const pops = [
   "pops/pop1.mp3",
   "pops/pop2.mp3",
@@ -14,6 +16,8 @@ const App = () => {
   const [popIndex, setPopIndex] = useState(0);
 
   const containerRef = useRef(null);
+
+  const incrementMegicPoints = useMegicStore((state) => state.increaseMegicPoints);
 
   useEffect(() => {
     const savedPopCount = getCookie("pop_count");
@@ -63,6 +67,8 @@ const App = () => {
   };
 
   const incrementPopCount = () => {
+    // useMegicStore.setState({megicPoints: megicPoints + 10});
+    incrementMegicPoints();
     const newCount = popCount + 1;
     setPopCount(newCount);
     setCookie("pop_count", newCount, 365);

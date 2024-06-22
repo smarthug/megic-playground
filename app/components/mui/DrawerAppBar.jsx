@@ -126,8 +126,11 @@ function DrawerAppBar(props) {
               sx={{ mr: 2 }}
             >
               <AttachMoneyIcon />
-              <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
+              {/* <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
                 {`${megicPoints}`}
+              </Typography> */}
+              <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
+                {megicPoints}
               </Typography>
             </IconButton>
           </Box>
