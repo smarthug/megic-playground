@@ -17,7 +17,6 @@ export default function LabelBottomNavigation() {
 
   // Get the current path to set the value
   const currentPath = location.pathname;
-  console.log(currentPath);
 
   // Determine the value based on the current path
   let initialValue;
@@ -37,7 +36,6 @@ export default function LabelBottomNavigation() {
   }
 
   const [value, setValue] = useState(initialValue);
-  console.log(value);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

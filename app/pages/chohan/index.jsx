@@ -249,7 +249,7 @@ const Experience = () => {
           // onDoubleClick={Test}
           onClick={throwDice}
         >
-          <Container marginTop={56}>
+          <Container marginTop={0}>
             <TextOnCard />
           </Container>
           <Container flexGrow={1}>{/* <TextOnCard /> */}</Container>

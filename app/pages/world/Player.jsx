@@ -46,7 +46,7 @@ export default function Player()
 
     const reset = () =>
     {
-        ref.current.setTranslation({ x: 0, y: 0, z: 2 })
+        ref.current.setTranslation({ x: 0, y: 1, z: 2 })
         ref.current.setLinvel({ x: 0, y: 0, z: 0 })
         ref.current.setAngvel({ x: 0, y: 0, z: 0 })
     }
@@ -71,7 +71,7 @@ export default function Player()
     >
         <Ecctrl
             ref={ ref }
-            position={ [ 0, 0, - 2 ] }
+            position={ [ 0, 1, - 2 ] }
             debug={ false }
             capsuleRadius={ 0.4 }
             

@@ -1,7 +1,7 @@
 import DrawerAppBar from "../components/mui/DrawerAppBar";
 import BottomNav from "../components/mui/BottomNav";
 
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 import { Outlet } from "@remix-run/react";
 import { useEffect } from "react";
@@ -34,7 +34,10 @@ const ContentBox = styled(Box)({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+  overflow: "hidden",
 //   backgroundColor: "lightblue",
+
+marginTop: "56px",
 });
 
 // export const Experience = () => {
