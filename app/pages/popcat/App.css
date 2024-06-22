@@ -27,9 +27,7 @@ html {
     left: 50%;
     z-index: -1;
     transform: translate(-50%, -50%) rotate(-3deg);
-    background-image: url("imgs/bg.jpg");
-    background-repeat: repeat-x;
-    background-size: contain;
+
   }
   
   .title {
@@ -65,13 +63,5 @@ html {
       font-size: 40px;
       -webkit-text-stroke-width: 1.5px;
     }
-  }
-  
-  #p {
-    background-image: url("imgs/p.png");
-  }
-  
-  #op {
-    background-image: url("imgs/op.png");
   }
   

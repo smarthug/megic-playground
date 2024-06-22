@@ -97,19 +97,35 @@ const App = () => {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   };
 
+  const appStyle = {
+    backgroundImage: 'url(imgs/bg.jpg)',
+    backgroundRepeat: 'repeat-x',
+    backgroundSize: 'contain'
+  };
+
+
+  const catStyle = {
+    backgroundImage: `url(imgs/${catImage}.png)`
+  };
+
   return (
     <div
       className="container"
       ref={containerRef}
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        // display: "flex",
+        // justifyContent: "center",
+        // alignItems: "center",
+        // height: "100vh",
+        // translate: "rotate(3deg)",
+        backgroundImage: 'url(imgs/bg.jpg)',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: 'contain'
       }}
+      
     >
       <img className="title" src="imgs/popcat.svg" alt="POPCAT" />
-      <div className={`cat-img ${catImage}`} id={catImage}>
+      <div className={`cat-img ${catImage}`} id={catImage} style={catStyle}>
         {popCount > 0 ? popCount : ""}
       </div>
     </div>
