@@ -67,12 +67,20 @@ const GameGrid = () => {
 
 function GameCard({ image, alt, link }) {
   return (
-    <Link to={link}>
+    <Link
+      to={link}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
       <CardMedia
         component="img"
         image={image}
         alt={alt}
-        style={{ height: "100px" }}
+        style={{ height: "100%" }}
       />
     </Link>
   );
