@@ -176,7 +176,13 @@ function createWall(position, rotation) {
   // Three.js 벽 생성
   const wallGeometry = new THREE.BoxGeometry(wallWidth, wallHeight, wallThickness);
   const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x888888 });
-  const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+  // 금색 재질 설정
+const goldMaterial = new THREE.MeshStandardMaterial({
+  color: 0xffd700, // 금색
+  metalness: 0.5, // 금속성
+  roughness: 0.2 // 거칠기 (0에 가까울수록 반사가 강함)
+});
+  const wall = new THREE.Mesh(wallGeometry, goldMaterial);
   wall.position.copy(position);
   wall.rotation.copy(rotation);
   wall.receiveShadow = true;
