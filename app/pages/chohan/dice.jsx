@@ -57,6 +57,7 @@ export const DiceGame = ({ container }) => {
     const diceArray = useDiceStore.getState().diceArray;
 
     createFloor();
+    createWalls();
     diceMesh = createDiceMesh();
     for (let i = 0; i < params.numberOfDice; i++) {
       diceArray.push(createDice());
@@ -164,6 +165,59 @@ function createFloor() {
   floorBody.position.copy(floor.position);
   floorBody.quaternion.copy(floor.quaternion);
   physicsWorld.addBody(floorBody);
+}
+
+
+function createWall(position, rotation) {
+  const wallWidth =8;
+  const wallHeight = 3;
+  const wallThickness = .1;
+
+  // Three.js 벽 생성
+  const wallGeometry = new THREE.BoxGeometry(wallWidth, wallHeight, wallThickness);
+  const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x888888 });
+  const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+  wall.position.copy(position);
+  wall.rotation.copy(rotation);
+  wall.receiveShadow = true;
+  scene.add(wall);
+
+  // Cannon-es 벽 생성
+  const wallShape = new CANNON.Box(new CANNON.Vec3(wallWidth / 2, wallHeight / 2, wallThickness / 2));
+  const wallBody = new CANNON.Body({ mass: 0 }); // static
+  wallBody.addShape(wallShape);
+  wallBody.position.copy(wall.position);
+  wallBody.quaternion.copy(wall.quaternion);
+  physicsWorld.addBody(wallBody);
+}
+
+function createWalls() {
+  const halfSize = 4; // 바닥의 반 크기
+  const wallThickness = 10;
+
+  const wallHeight = 3;
+  // 벽 위치와 회전 설정
+  const positions = [
+    new THREE.Vector3(0, wallHeight/2, halfSize), // 앞쪽 벽
+    new THREE.Vector3(0, wallHeight/2, -halfSize), // 뒤쪽 벽
+    new THREE.Vector3(halfSize, wallHeight/2, 0), // 오른쪽 벽
+    new THREE.Vector3(-halfSize, wallHeight/2, 0) // 왼쪽 벽
+  ];
+  const rotations = [
+    new THREE.Euler(0, 0, 0), // 앞쪽 벽
+    new THREE.Euler(0, Math.PI, 0), // 뒤쪽 벽
+    new THREE.Euler(0, Math.PI / 2, 0), // 오른쪽 벽
+    new THREE.Euler(0, -Math.PI / 2, 0) // 왼쪽 벽
+  ];
+
+  // const mat1 = new CANNON.Material()
+
+  // 각 벽 생성
+  positions.forEach((position, index) => {
+    createWall(position, rotations[index]);
+  });
+
+  // const mat1_ground = new CANNON.ContactMaterial(groundMaterial, mat1, { friction: 0.0, restitution: 0.0 })
 }
 
 function createDiceMesh() {
@@ -420,7 +474,7 @@ export function throwDice() {
     d.body.velocity.setZero();
     d.body.angularVelocity.setZero();
 
-    d.body.position = new CANNON.Vec3(6, dIdx * 1.5 + 7, 0);
+    d.body.position = new CANNON.Vec3(4, dIdx *3 + 4, 0);
     // d.body.position = new CANNON.Vec3(3, dIdx * 6, 0);
     d.mesh.position.copy(d.body.position);
 

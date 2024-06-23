@@ -238,7 +238,7 @@ function Test() {
 const Experience = () => {
   return (
     <>
-      <OrbitControls maxPolarAngle={Math.PI / 2} />
+      {/* <OrbitControls maxPolarAngle={Math.PI / 2} /> */}
       <Fullscreen flexDirection="column" padding={0} gap={0}>
         <Container
           flexGrow={1}
@@ -291,7 +291,7 @@ function App() {
       >
       </Box> */}
 
-      <Canvas shadows camera={{ position: [0, 25, 25], fov: 45 }}>
+      <Canvas shadows camera={{ position: [0, 25, 0], fov: 45 }}>
         <color attach="background" args={["#ececec"]} />
         <Experience />
       </Canvas>
