@@ -92,6 +92,27 @@ function DrawerAppBar(props) {
     </Menu>
   );
 
+
+
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0, // 소수점을 원하지 않으면 이 줄을 추가하세요.
+    }).format(amount);
+  };
+  
+  const UserMoneyDisplay = ({ amount }) => {
+    return (
+      <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
+        {formatCurrency(amount)}
+      </Typography>
+    );
+  };
+
+
+
   return (
     <>
       <CssBaseline />
@@ -125,13 +146,14 @@ function DrawerAppBar(props) {
               //   onClick={handleDrawerToggle}
               sx={{ mr: 2 }}
             >
-              <AttachMoneyIcon />
+              {/* <AttachMoneyIcon /> */}
               {/* <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
                 {`${megicPoints}`}
               </Typography> */}
-              <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
+              {/* <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
                 {megicPoints}
-              </Typography>
+              </Typography> */}
+              <UserMoneyDisplay amount={megicPoints} />
             </IconButton>
           </Box>
 
