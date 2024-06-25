@@ -4,6 +4,7 @@ import {CuboidCollider, RigidBody, vec3} from '@react-three/rapier'
 import {useEffect, useRef, useState} from "react";
 import useGame from '../stores/useGame'
 import {useControls} from "leva";
+import { useMegicStore } from "../../../utils/useMegicStore";
 
 export default function Table(props) {
     const {nodes, materials} = useGLTF("/models/table.gltf");
@@ -14,6 +15,8 @@ export default function Table(props) {
 
     const [isScored, setIsScored] = useState(false)
 
+    const increaseMegicPoints = useMegicStore((state) => state.increaseMegicPoints)
+
     const {tableRestitution, tableFriction, glassRestitution, glassFriction} = useControls('table', {
         tableRestitution: {label: 'Table Restitution', value: 0.6, min: 0, max: 1, step: 0.1},
         tableFriction: {label: 'Table Friction', value: 0, min: 0, max: 10},
@@ -22,12 +25,13 @@ export default function Table(props) {
     }, {collapsed: true})
 
     const increaseScore = useGame((state) => state.increment)
-    const decreaseScore = useGame((state) => state.decrement)
+    // const decreaseScore = useGame((state) => state.decrement)
 
     const goal = () => {
         if(!isScored) {
             setIsScored(true)
             increaseScore()
+            increaseMegicPoints()
             useGame.setState({ isScored: true })
         }
     }
@@ -43,7 +47,7 @@ export default function Table(props) {
         if (controlRef.current) {
             useGame.setState({ [isControlAPushed ? 'isControlAPushed' : 'isControlBPushed']: true })
             controlRef.current.position.y = 0.128 - 0.1
-            decreaseScore()
+            // decreaseScore()
         }
     }
 

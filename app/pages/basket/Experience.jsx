@@ -18,13 +18,13 @@ const Experience = () => {
     })
     const [isExploding, setIsExploding] = useState()
 
-    const [prevScore, setPrevScore] = useState(1000);
+    const [prevScore, setPrevScore] = useState(0);
 
     useEffect(() => {
         const unsuscribeIsScored = useGame.subscribe(
             (state) => state.score,
             (score) => {
-                if(score != prevScore && score > prevScore) {
+                if(score != prevScore) {
                     setIsExploding(true)
                     setTimeout(() => {
                         setIsExploding(false)

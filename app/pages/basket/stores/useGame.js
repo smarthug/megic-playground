@@ -6,9 +6,9 @@ export default create(subscribeWithSelector((set) => {
         /**
          * Score
         */
-        score: 1000,
-        increment: () => set((state) => ({ score: state.score + 250 })),
-        decrement: () => set((state) => ({ score: state.score - 100 })),
+        score: 0,
+        increment: () => set((state) => ({ score: state.score + 1 })),
+        // decrement: () => set((state) => ({ score: state.score - 100 })),
 
         /**
          * Controls
