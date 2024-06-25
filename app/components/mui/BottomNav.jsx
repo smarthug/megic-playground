@@ -31,7 +31,7 @@ export default function LabelBottomNavigation() {
       initialValue = "2";
       break;
     default:
-      initialValue = "2";
+      initialValue = "1";
       break;
   }
 
@@ -41,13 +41,13 @@ export default function LabelBottomNavigation() {
     setValue(newValue);
     switch (newValue) {
       case "0":
-        navigate("/shop");
-        break;
-      case "1":
         navigate("/world");
         break;
-      case "2":
+      case "1":
         navigate("/game");
+        break;
+      case "2":
+        navigate("/shop");
         break;
       default:
         break;
@@ -64,12 +64,8 @@ export default function LabelBottomNavigation() {
         value={`${value}`}
         onChange={handleChange}
       >
-        <BottomNavigationAction
-          label="Shop"
-          value="0"
-          icon={<StorefrontIcon />}
-        />
-        <BottomNavigationAction label="World" value="1" icon={<PublicIcon />} />
+       
+        <BottomNavigationAction label="World" value="0" icon={<PublicIcon />} />
         {/* <BottomNavigationAction
           label="Casino"
           value="casino"
@@ -77,8 +73,13 @@ export default function LabelBottomNavigation() {
         /> */}
         <BottomNavigationAction
           label="Game"
-          value="2"
+          value="1"
           icon={<SportsEsportsIcon />}
+        />
+         <BottomNavigationAction
+          label="Shop"
+          value="2"
+          icon={<StorefrontIcon />}
         />
       </BottomNavigation>
     </Paper>

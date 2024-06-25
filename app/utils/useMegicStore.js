@@ -25,6 +25,7 @@ export const useMegicStore = create((set) => ({
 
     megicPoints: 1000,
     setMegicPoints: (megicPoints) => set({ megicPoints }),
+    increaseMegicPointByOne: () => set((state) => ({ megicPoints: Number(state.megicPoints) + 1 })),
     increaseMegicPoints: () => set((state) => ({ megicPoints: Number(state.megicPoints) + 10 })),
     // decreaseMegicPoints: (megicPoints) => set({ megicPoints: megicPoints - 1 }),
 

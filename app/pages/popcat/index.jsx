@@ -17,7 +17,7 @@ const App = () => {
 
   const containerRef = useRef(null);
 
-  const incrementMegicPoints = useMegicStore((state) => state.increaseMegicPoints);
+  const increaseMegicPointByOne = useMegicStore((state) => state.increaseMegicPointByOne);
 
   useEffect(() => {
     const savedPopCount = getCookie("pop_count");
@@ -68,7 +68,7 @@ const App = () => {
 
   const incrementPopCount = () => {
     // useMegicStore.setState({megicPoints: megicPoints + 10});
-    incrementMegicPoints();
+    increaseMegicPointByOne();
     const newCount = popCount + 1;
     setPopCount(newCount);
     setCookie("pop_count", newCount, 365);
