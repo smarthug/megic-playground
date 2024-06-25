@@ -21,13 +21,13 @@ export default function LabelBottomNavigation() {
   // Determine the value based on the current path
   let initialValue;
   switch (currentPath) {
-    case "/shop":
+    case "/world":
       initialValue = "0";
       break;
-    case "/world":
+    case "/game":
       initialValue = "1";
       break;
-    case "/game":
+    case "/shop":
       initialValue = "2";
       break;
     default:

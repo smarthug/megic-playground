@@ -90,7 +90,7 @@ function TextOnCard() {
       width={250}
     >
       <Text fontSize={32}>
-        {isRolling ? "Rolling..." : getOddEven(firstDice + secondDice)}
+        {isRolling ? "Rolling... or Reroll" : getOddEven(firstDice + secondDice)}
         {/* {(firstDice + secondDice) % 2 === 0 ? "Even" : "Odd"} */}
       </Text>
       <Text fontSize={24} opacity={0.7}>
@@ -291,7 +291,7 @@ function App() {
       >
       </Box> */}
 
-      <Canvas shadows camera={{ position: [0, 25, 0], fov: 45 }}>
+      <Canvas shadows camera={{ position: [0, 15, 0], fov: 45 }}>
         <color attach="background" args={["#ececec"]} />
         <Experience />
       </Canvas>

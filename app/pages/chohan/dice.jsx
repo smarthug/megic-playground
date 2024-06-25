@@ -64,7 +64,7 @@ export const DiceGame = ({ container }) => {
       addDiceEvents(diceArray[i], i);
     }
 
-    // throwDice();
+    throwDice();
 
     //   window.addEventListener('dblclick', throwDice);
 
@@ -169,7 +169,7 @@ function createFloor() {
 
 
 function createWall(position, rotation) {
-  const wallWidth =8;
+  const wallWidth =6;
   const wallHeight = 3;
   const wallThickness = .1;
 
@@ -198,7 +198,7 @@ const goldMaterial = new THREE.MeshStandardMaterial({
 }
 
 function createWalls() {
-  const halfSize = 4; // 바닥의 반 크기
+  const halfSize = 3; // 바닥의 반 크기
   const wallThickness = 10;
 
   const wallHeight = 3;
@@ -480,7 +480,8 @@ export function throwDice() {
     d.body.velocity.setZero();
     d.body.angularVelocity.setZero();
 
-    d.body.position = new CANNON.Vec3(4, dIdx *3 + 4, 0);
+    // d.body.position = new CANNON.Vec3(3, dIdx *2 + 5.5, 0.5);
+    d.body.position = new CANNON.Vec3(1, dIdx *2 + 5.5, 0.2);
     // d.body.position = new CANNON.Vec3(3, dIdx * 6, 0);
     d.mesh.position.copy(d.body.position);
 
@@ -491,7 +492,8 @@ export function throwDice() {
     );
     d.body.quaternion.copy(d.mesh.quaternion);
 
-    const force = 3 + 5 * Math.random();
+    // const force = 3 + 5 * Math.random();
+    const force = 1 + 2 * Math.random();
     d.body.applyImpulse(
       new CANNON.Vec3(-force, force, 0),
       new CANNON.Vec3(0, 0, 0.2)
