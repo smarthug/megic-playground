@@ -24,7 +24,7 @@ export default function Floor({ size = 10 }) {
         <Suspense fallback={null}>
           {/* <Tent scale={0.015} position-y={1.5} /> */}
           {/* <Oolong scale={0.5} position-z={-55} /> */}
-          <Oolong scale={3} position-z={-3} position-y={-3}  />
+          <Oolong scale={3} position-z={-9} position-y={-3}  />
         </Suspense>
       
     </>
