@@ -14,11 +14,15 @@ import { DiceGame, throwDice } from "./dice";
 
 import { useDiceStore } from "./useDiceStore";
 import { Canvas } from "@react-three/fiber";
-import { Box, Paper, TextField ,ToggleButton,ToggleButtonGroup} from "@mui/material";
+import {
+  Box,
+  Paper,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 
 import { useMegicStore } from "../../utils/useMegicStore";
-
-
 
 function TextOnCard() {
   const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
@@ -33,7 +37,10 @@ function TextOnCard() {
   );
   const isRolling = isFirstDiceRolling || isSecondDiceRolling;
 
-  const getOddEven = (sum) => (sum % 2 === 0 ? "Even" : "Odd");
+  const getOddEven = (sum) => (sum % 2 === 0 ? "EVEN" : "ODD");
+
+  const [isWin, setIsWin] = useState(false);
+  const [result, setResult] = useState(0);
 
   useLayoutEffect(() => {
     console.log("firstDice", firstDice);
@@ -56,6 +63,7 @@ function TextOnCard() {
 
   function win() {
     console.log("win");
+    setIsWin(true);
     // useMegicStore.getState().increaseMegicPoints(1)
     const betAmount = useDiceStore.getState().betAmount;
     // console.log(betAmount);
@@ -63,6 +71,8 @@ function TextOnCard() {
     // console.log(prev);
     const result = Number(prev) + Number(betAmount) * 2;
     // console.log(result);
+    console.log(Number(betAmount) * 2);
+    setResult(formatCurrency(Number(betAmount) * 2));
     localStorage.setItem("megicPoints", result);
 
     setMegicPoints(result);
@@ -70,6 +80,7 @@ function TextOnCard() {
 
   function lose() {
     console.log("lose");
+    setIsWin(false);
     // useMegicStore.getState().decreaseMegicPoints(1)
     const betAmount = useDiceStore.getState().betAmount;
     // console.log(betAmount);
@@ -77,9 +88,21 @@ function TextOnCard() {
     // console.log(prev);
     const result = Number(prev) - Number(betAmount);
     // console.log(result);
+    console.log(-Number(betAmount));
+    setResult(formatCurrency(-Number(betAmount)));
+    console.log(result);
     localStorage.setItem("megicPoints", result);
     setMegicPoints(result);
   }
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0, // 소수점을 원하지 않으면 이 줄을 추가하세요.
+    }).format(amount);
+  };
+
   return (
     <Card
       borderRadius={32}
@@ -89,14 +112,19 @@ function TextOnCard() {
       alignItems={"center"}
       width={250}
     >
-      <Text fontSize={32}>
-        {isRolling ? "Rolling... or Reroll" : getOddEven(firstDice + secondDice)}
-        {/* {(firstDice + secondDice) % 2 === 0 ? "Even" : "Odd"} */}
+      {/* <Text fontSize={32} color={isWin ? "yellow" : "blue"}>
+        {isRolling ? "Rolling..." : `${result}`}
+      </Text> */}
+
+      <Text fontSize={32} color={isRolling ? "white" : (isWin ? "yellow" : "blue")}>
+        {isRolling ? "Rolling..." : `${result}`}
       </Text>
       <Text fontSize={24} opacity={0.7}>
         {isRolling
-          ? ""
-          : `${firstDice}+${secondDice}=${firstDice + secondDice}`}
+          ? "or reroll"
+          : `${firstDice}+${secondDice}=${
+              firstDice + secondDice
+            } : ${getOddEven(firstDice + secondDice)}`}
       </Text>
     </Card>
   );
@@ -291,7 +319,7 @@ function App() {
       >
       </Box> */}
 
-      <Canvas shadows camera={{ position: [0, 15, 0], fov: 45 }}>
+      <Canvas shadows camera={{ position: [0, 17, 0], fov: 45 }}>
         <color attach="background" args={["#ececec"]} />
         <Experience />
       </Canvas>
@@ -323,12 +351,10 @@ function App() {
           <BetInput />
           <Box
             style={{
-              flex:1,
+              flex: 1,
               backgroundColor: "#ececec",
             }}
-          >
-
-          </Box>
+          ></Box>
           <OddEvenTabs />
         </Paper>
       </Box>
