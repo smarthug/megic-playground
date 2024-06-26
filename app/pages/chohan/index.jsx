@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 
 import { useMegicStore } from "../../utils/useMegicStore";
+import BetInput from "./BetInput";
 
 function TextOnCard() {
   const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
@@ -262,21 +263,21 @@ function OddEvenTabs() {
 //   );
 // }
 
-function BetInput() {
-  const betAmount = useDiceStore((state) => state.betAmount);
-  const setBetAmount = useDiceStore((state) => state.setBetAmount);
-  return (
-    <TextField
-      type="number"
-      id="outlined-controlled"
-      label="Bet Amount"
-      value={betAmount}
-      onChange={(event) => {
-        setBetAmount(event.target.value);
-      }}
-    />
-  );
-}
+// function BetInput() {
+//   const betAmount = useDiceStore((state) => state.betAmount);
+//   const setBetAmount = useDiceStore((state) => state.setBetAmount);
+//   return (
+//     <TextField
+//       type="number"
+//       id="outlined-controlled"
+//       label="Bet Amount"
+//       value={betAmount}
+//       onChange={(event) => {
+//         setBetAmount(event.target.value);
+//       }}
+//     />
+//   );
+// }
 
 function Test() {
   console.log("test");
