@@ -2,6 +2,7 @@ import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 
 import { Tent } from "./Stylized_tent";
+import { Suspense } from "react";
 
 export default function Floor({ size = 10 }) {
   const settings = useControls("floor", {
@@ -14,8 +15,9 @@ export default function Floor({ size = 10 }) {
         <boxGeometry args={[1, 1, 1]} />
         <meshLambertMaterial dithering color={settings.color} />
       </mesh>
-
-      <Tent scale={0.015} position-y={1.5} />
+      <Suspense fallback={null}>
+        <Tent scale={0.015} position-y={1.5} />
+      </Suspense>
     </RigidBody>
   );
 }

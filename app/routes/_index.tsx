@@ -2,7 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { Link, redirect } from "@remix-run/react";
 
 export const clientLoader  = () => {
-  return redirect("/games");
+  return redirect("/game");
 }
 
 export const meta: MetaFunction = () => {

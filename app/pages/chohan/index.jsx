@@ -116,7 +116,10 @@ function TextOnCard() {
         {isRolling ? "Rolling..." : `${result}`}
       </Text> */}
 
-      <Text fontSize={32} color={isRolling ? "white" : (isWin ? "yellow" : "blue")}>
+      <Text
+        fontSize={32}
+        color={isRolling ? "white" : isWin ? "yellow" : "blue"}
+      >
         {isRolling ? "Rolling..." : `${result}`}
       </Text>
       <Text fontSize={24} opacity={0.7}>
@@ -194,7 +197,9 @@ function OddEvenTabs() {
   const handleChange = (event, newAlignment) => {
     // setAlignment(newAlignment);
     console.log(newAlignment);
-    setIsYourGuessOdd(newAlignment);
+    if (newAlignment !== null) {
+      setIsYourGuessOdd(newAlignment);
+    }
   };
 
   return (
@@ -205,8 +210,22 @@ function OddEvenTabs() {
       onChange={handleChange}
       aria-label="Platform"
     >
-      <ToggleButton value={true}>Odd</ToggleButton>
-      <ToggleButton value={false}>Even</ToggleButton>
+      <ToggleButton
+        style={{
+          minWidth: 60,
+        }}
+        value={true}
+      >
+        Odd
+      </ToggleButton>
+      <ToggleButton
+        style={{
+          minWidth: 60,
+        }}
+        value={false}
+      >
+        Even
+      </ToggleButton>
     </ToggleButtonGroup>
   );
 }

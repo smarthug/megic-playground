@@ -20,4 +20,4 @@ export function Tent(props) {
   )
 }
 
-useGLTF.preload('/stylized_tent-transformed.glb')
+useGLTF.preload('models/stylized_tent-transformed.glb')
