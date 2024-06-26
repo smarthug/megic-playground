@@ -20,6 +20,8 @@ import {
   TextField,
   ToggleButton,
   ToggleButtonGroup,
+  Chip,
+  Stack,
 } from "@mui/material";
 
 import { useMegicStore } from "../../utils/useMegicStore";
@@ -279,10 +281,6 @@ function OddEvenTabs() {
 //   );
 // }
 
-function Test() {
-  console.log("test");
-}
-
 const Experience = () => {
   return (
     <>
@@ -326,7 +324,73 @@ const Experience = () => {
   );
 };
 
+function BettingChips() {
+  const betAmount = useDiceStore((state) => state.betAmount);
+  const setBetAmount = useDiceStore((state) => state.setBetAmount);
+
+  const handleReset = () => {
+    console.info("You clicked the reset Chip.");
+    setBetAmount(0);
+  };
+
+  const handle100 = () => {
+    console.info("You clicked the 100 Chip.");
+    setBetAmount(betAmount + 100);
+  };
+
+  const handle1000 = () => {
+    console.info("You clicked the 1000 Chip.");
+    setBetAmount(betAmount + 1000);
+  };
+
+  const handleX2 = () => {
+    console.info("You clicked the x2 Chip.");
+    setBetAmount(betAmount * 2);
+  };
+
+  return (
+    <Stack
+      direction="row"
+      spacing={1}
+      style={{
+        margin: 4,
+      }}
+    >
+      <Chip
+        color="info"
+        label="reset"
+        variant="outlined"
+        onClick={handleReset}
+      />
+      <Chip
+        color="primary"
+        label="100"
+        variant="outlined"
+        onClick={handle100}
+      />
+      <Chip
+        color="primary"
+        label="1000"
+        variant="outlined"
+        onClick={handle1000}
+      />
+      <Chip color="error" label="x2" variant="outlined" onClick={handleX2} />
+    </Stack>
+  );
+}
+
 function App() {
+  const setBetAmount = useDiceStore((state) => state.setBetAmount);
+
+  useEffect(() => {
+    console.log("chohan");
+
+    return () => {
+      console.log("chohan unmount");
+      setBetAmount(0);
+    };
+  }, []);
+
   return (
     <>
       {/* <Box
@@ -368,7 +432,12 @@ function App() {
             elevation: 0,
           }}
         >
-          <BetInput />
+          <Box>
+            <Box>
+              <BettingChips />
+            </Box>
+            <BetInput />
+          </Box>
           <Box
             style={{
               flex: 1,
