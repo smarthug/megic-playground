@@ -18,7 +18,7 @@ import { useMegicStore } from "../utils/useMegicStore";
 // });
 
 const RootContainer = styled(Box)({
-  height: "100vh",
+  height: "100dvh",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

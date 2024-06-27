@@ -72,10 +72,12 @@ function TextOnCard() {
     // console.log(betAmount);
     const prev = useMegicStore.getState().megicPoints;
     // console.log(prev);
-    const result = Number(prev) + Number(betAmount) * 2;
+    // lol what is this, no wonder it was doubling
+    // const result = Number(prev) + Number(betAmount) * 2;
+    const result = Number(prev) + Number(betAmount);
     // console.log(result);
     console.log(Number(betAmount) * 2);
-    setResult(formatCurrency(Number(betAmount) * 2));
+    setResult(formatCurrency(Number(betAmount)));
     localStorage.setItem("megicPoints", result);
 
     setMegicPoints(result);
