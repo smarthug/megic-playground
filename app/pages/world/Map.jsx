@@ -32,10 +32,9 @@ export default function Floor({ size = 10 }) {
         {/* <Oolong scale={0.5} position-z={-55} /> */}
         <Oolong scale={3} position-z={-9} position-y={-3} />
         {/* <QuestionBlock scale={0.5} position-z={-9} position-y={-3} /> */}
+        <QuestionBlock pos={[0,0,0]} mushroom={false} />
       </Suspense>
-      <RigidBody type="fixed">
-        <QuestionBlock position-x={-70} position-y={-9} />
-      </RigidBody>
+    
     </>
   );
 }

@@ -95,6 +95,8 @@ export default function Player()
             autoBalance={ true }
 
             camCollisionOffset={ 100 }
+
+            name="player"
         >
             <mesh position-y={ 0 } castShadow>
                 <capsuleGeometry args={ [ 0.4, 0.7, 4, 18 ] } />
