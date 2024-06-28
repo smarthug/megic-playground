@@ -1,14 +1,26 @@
 import { create } from "zustand";
+import { useMegicStore } from "../../utils/useMegicStore";
 
 export const useDiceStore = create((set) => ({
   //   sum: 2,
   //   setSum: (sum) => set({ sum }),
-//   isOdd: false,
-//   setIsOdd: (isOdd) => set({ isOdd }),
+  //   isOdd: false,
+  //   setIsOdd: (isOdd) => set({ isOdd }),
   isYourGuessOdd: false,
   setIsYourGuessOdd: (isYourGuessOdd) => set({ isYourGuessOdd }),
   betAmount: 0,
-  setBetAmount: (betAmount) => set({ betAmount }),
+  // setBetAmount: (betAmount) => set({ betAmount }),
+  setBetAmount: (betAmount) => {
+    if (betAmount < 0) betAmount = 0;
+    const megicPoints = useMegicStore.getState().megicPoints;
+    if (betAmount > megicPoints) {
+    } else {
+      set((state) => {
+        // console.log(megicPoints);
+        return { betAmount };
+      });
+    }
+  },
 
   firstDice: 1,
   setFirstDice: (firstDice) => set({ firstDice }),

@@ -51,7 +51,7 @@ export default function QuantityInput() {
     <NumberInput
       aria-label="Quantity Input"
       min={0}
-      step={100}
+      // step={100}
       value={betAmount}
       onChange={(event, newValue) => {
         setBetAmount(Number(newValue));
