@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useDiceStore } from "../pages/chohan/useDiceStore";
 
 export const useMegicStore = create((set) => ({
     //   sum: 2,
@@ -24,7 +25,23 @@ export const useMegicStore = create((set) => ({
     //   setDiceArray: (diceArray) => set({ diceArray }),
 
     megicPoints: 1000,
-    setMegicPoints: (megicPoints) => set({ megicPoints }),
+    // setMegicPoints: (megicPoints) => set({ megicPoints }),
+    setMegicPoints: (megicPoints) => {
+        if (megicPoints < 0) megicPoints = 0;
+        // const betAmount = useDiceStore.getState().betAmount;
+
+
+        // set((state) => {
+        //     if (state.megicPoints < betAmount) {
+
+        //         return { megicPoints }
+        //     }
+        // })
+        // return null 
+
+        set({ megicPoints })
+    },
+
     increaseMegicPointByOne: () => set((state) => ({ megicPoints: Number(state.megicPoints) + 1 })),
     increaseMegicPoints: () => set((state) => ({ megicPoints: Number(state.megicPoints) + 10 })),
     // decreaseMegicPoints: (megicPoints) => set({ megicPoints: megicPoints - 1 }),

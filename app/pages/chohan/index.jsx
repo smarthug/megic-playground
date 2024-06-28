@@ -28,9 +28,13 @@ import { useMegicStore } from "../../utils/useMegicStore";
 import BetInput from "./BetInput";
 
 function TextOnCard() {
+  const megicPoints = useMegicStore((state) => state.megicPoints);
   const setMegicPoints = useMegicStore((state) => state.setMegicPoints);
   const firstDice = useDiceStore((state) => state.firstDice);
   const secondDice = useDiceStore((state) => state.secondDice);
+
+  const betAmount = useDiceStore((state) => state.betAmount);
+  const setBetAmount = useDiceStore((state) => state.setBetAmount);
 
   const isYourGuessOdd = useDiceStore((state) => state.isYourGuessOdd);
 
@@ -64,13 +68,15 @@ function TextOnCard() {
     }
   }, [isFirstDiceRolling, isSecondDiceRolling]);
 
+  useEffect(() => {}, [megicPoints, betAmount]);
+
   function win() {
     console.log("win");
     setIsWin(true);
     // useMegicStore.getState().increaseMegicPoints(1)
-    const betAmount = useDiceStore.getState().betAmount;
+
     // console.log(betAmount);
-    const prev = useMegicStore.getState().megicPoints;
+    const prev = megicPoints;
     // console.log(prev);
     // lol what is this, no wonder it was doubling
     // const result = Number(prev) + Number(betAmount) * 2;
@@ -81,15 +87,16 @@ function TextOnCard() {
     localStorage.setItem("megicPoints", result);
 
     setMegicPoints(result);
+    // adjustMegicPoints()
   }
 
   function lose() {
     console.log("lose");
     setIsWin(false);
     // useMegicStore.getState().decreaseMegicPoints(1)
-    const betAmount = useDiceStore.getState().betAmount;
+
     // console.log(betAmount);
-    const prev = useMegicStore.getState().megicPoints;
+    const prev = megicPoints;
     // console.log(prev);
     const result = Number(prev) - Number(betAmount);
     // console.log(result);
@@ -98,7 +105,19 @@ function TextOnCard() {
     console.log(result);
     localStorage.setItem("megicPoints", result);
     setMegicPoints(result);
+    // adjustMegicPoints()
+    if(betAmount > result) {
+      setBetAmount(result);
+    }
   }
+
+  // function adjustMegicPoints() {
+  //   if(betAmount > megicPoints) {
+  //     console.log("betAmount > megicPoints");
+  //     setBetAmount(megicPoints);
+  //   }
+
+  // }
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-US", {
@@ -123,13 +142,13 @@ function TextOnCard() {
 
       <Text
         fontSize={32}
-        color={isRolling ? "white" : isWin ? "yellow" : "blue"}
+        color={isRolling ? "white" : isWin ? "green" : "blue"}
       >
         {isRolling ? "Rolling..." : `${result}`}
       </Text>
       <Text fontSize={24} opacity={0.7}>
         {isRolling
-          ? "or reroll"
+          ? "TAP to reroll"
           : `${firstDice}+${secondDice}=${
               firstDice + secondDice
             } : ${getOddEven(firstDice + secondDice)}`}

@@ -9,7 +9,7 @@ import { Leva } from "leva";
 export default function App() {
   return (
     <>
-      <Leva collapsed hidden />
+      <Leva collapsed hidden={false} />
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },

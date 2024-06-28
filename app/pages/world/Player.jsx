@@ -75,8 +75,8 @@ export default function Player()
             debug={ false }
             capsuleRadius={ 0.4 }
             
-            camInitDis={ - 25 }
-            camMaxDis={ - 35 }
+            camInitDis={ - 70 }
+            camMaxDis={ - 135 }
             // 이게 라디안으로 바뀜 최신 버전에서는
             camInitDir={{ x: - 0.5, y: Math.PI, z: 0 }}
             camTargetPos={{ x: 0, y: 0, z: 0 }}
