@@ -24,6 +24,7 @@ const games = [
 const StyledContainer = styled(Container)({
   // backgroundColor: '#e0f7fa',
   padding: "20px",
+  // maxWidth: "100px"
   // height: '90vh',
 });
 
@@ -41,10 +42,17 @@ const LargeStyledCard = styled(StyledCard)({
 
 const GameGrid = () => {
   return (
-    <StyledContainer>
+    <StyledContainer
+      maxWidth="xs"
+    >
       <Grid container spacing={2}>
         {games.map((game, index) => (
-          <Grid item xs={game.large ? 8 : 4} key={index}>
+          <Grid item xs={game.large ? 8 : 4} key={index} 
+            style={{
+              // margin:0,
+              
+            }}
+          >
             {game.large ? (
               <LargeStyledCard>
                 <LargeGameCard

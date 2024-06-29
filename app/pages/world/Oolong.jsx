@@ -16,13 +16,13 @@ export function Oolong(props) {
   const { nodes, materials } = useGLTF("models/oolong2-transformed.glb");
   return (
     <>
-      <mesh ref={circleRef} rotation-x={-Math.PI / 2}>
+      {/* <mesh ref={circleRef} rotation-x={-Math.PI / 2}>
         <ringGeometry args={[0.2, 0.3]} />
         <meshBasicMaterial color={0x000000} transparent opacity={0.25} />
-      </mesh>
+      </mesh> */}
 
       <RigidBody type="fixed" colliders="trimesh" ccd>
-        <group position={[0, 0, 0]} scale={6} {...props} dispose={null}>
+        <group position={[0, 0, 0]} scale={6} {...props} dispose={null} receiveShadow>
           <mesh
             geometry={nodes.pCube56_q00103.geometry}
             material={materials.lambert1_v}
@@ -227,6 +227,7 @@ export function Oolong(props) {
             scale={0.055}
           />
           <mesh
+            receiveShadow
             geometry={nodes.pCube42_q00200_part0.geometry}
             material={materials.tou_01_2_lambert11_v}
             position={[4.696, 0.055, 2.484]}
@@ -240,6 +241,7 @@ export function Oolong(props) {
             scale={0.055}
           />
           <mesh
+          
             geometry={nodes.polySurface1305_q00210_part0.geometry}
             material={materials.tou_01_2_lambert10_v}
             rotation={[Math.PI / 2, 0, 0]}

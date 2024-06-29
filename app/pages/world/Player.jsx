@@ -75,7 +75,7 @@ export default function Player()
             debug={ false }
             capsuleRadius={ 0.4 }
             
-            camInitDis={ - 70 }
+            camInitDis={ - 35 }
             camMaxDis={ - 135 }
             // 이게 라디안으로 바뀜 최신 버전에서는
             camInitDir={{ x: - 0.5, y: Math.PI, z: 0 }}
@@ -95,6 +95,8 @@ export default function Player()
             autoBalance={ true }
 
             camCollisionOffset={ 100 }
+
+            name="player"
         >
             <mesh position-y={ 0 } castShadow>
                 <capsuleGeometry args={ [ 0.4, 0.7, 4, 18 ] } />
