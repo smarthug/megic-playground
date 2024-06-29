@@ -93,17 +93,25 @@ export const QuestionBlock = ({ pos, mushroom }) => {
   useFrame(() => {
     if (!animateMushroom) return;
 
+    // mushRB.current.setLinvel({
+    //   x: mushRB.current.linvel().x,
+    //   y: mushRB.current.linvel().y,
+    //   z: hitPipe ? -4 : 4,
+    // });
+
     mushRB.current.setLinvel({
-      x: mushRB.current.linvel().x,
+      x: hitPipe ? -4 : 4,
       y: mushRB.current.linvel().y,
-      z: hitPipe ? -4 : 4,
+      z: mushRB.current.linvel().z,
     });
 
     // console.log(mush.current.position);
   });
   return (
     <>
-      <RigidBody type="fixed" >
+      <RigidBody type="fixed"
+      friction={1}
+      >
         {/* <group position={pos} ref={group}>
           <mesh
             geometry={nodes.BlockQuestion__BlockQuestionMat00.geometry}

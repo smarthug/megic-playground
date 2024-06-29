@@ -13,6 +13,12 @@ export default function Floor({ size = 10 }) {
     color: { value: "#2a2a2a" },
   });
 
+  function randomBoolean() {
+    return Math.random() < 0.5;
+  }
+
+  const random = randomBoolean();
+
   return (
     <>
       {/* <RigidBody type="fixed">
@@ -33,7 +39,7 @@ export default function Floor({ size = 10 }) {
         <Oolong scale={3} position-z={-9} position-y={-3} />
         {/* <QuestionBlock scale={0.5} position-z={-9} position-y={-3} /> */}
       </Suspense>
-      <QuestionBlock pos={[0, 0, 0]} mushroom={false} />
+      <QuestionBlock pos={[0, 0, 0]} mushroom={random} />
     </>
   );
 }
