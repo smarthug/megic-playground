@@ -28,57 +28,57 @@ export const QuestionBlock = ({ pos, mushroom }) => {
   const coinSound = useRef();
   const bumpSound = useRef();
   useGSAP(() => {
-    // if (group.current)
-    //   if (isHit) {
-    //     bumpSound.current.play();
-    //     const tl = gsap.timeline();
-    //     tl.to(group.current.position, {
-    //       y: pos[1] + 0.5,
-    //       duration: 0.12,
-    //       ease: "expo.out",
-    //     });
-    //     tl.to(group.current.position, {
-    //       y: pos[1],
-    //       duration: 0.12,
-    //       ease: "expo.out",
-    //       onComplete: () => {
-    //         group.current.visible = false;
-    //         setShowEmptyBlock(true);
-    //       },
-    //     });
-    //     if (!mushroom) {
-    //       coinSound.current.play();
+    if (group.current)
+      if (isHit) {
+        bumpSound.current.play();
+        const tl = gsap.timeline();
+        tl.to(group.current.position, {
+          y: pos[1] + 0.5,
+          duration: 0.12,
+          ease: "expo.out",
+        });
+        tl.to(group.current.position, {
+          y: pos[1],
+          duration: 0.12,
+          ease: "expo.out",
+          onComplete: () => {
+            group.current.visible = false;
+            setShowEmptyBlock(true);
+          },
+        });
+        if (!mushroom) {
+          coinSound.current.play();
 
-    //       const tlCoin = gsap.timeline();
-    //       gsap.to(coin.current.rotation, {
-    //         y: Math.PI * (Math.random() * 10),
-    //         duration: 1,
-    //         ease: "expo.out",
-    //       });
+          const tlCoin = gsap.timeline();
+          gsap.to(coin.current.rotation, {
+            y: Math.PI * (Math.random() * 10),
+            duration: 1,
+            ease: "expo.out",
+          });
 
-    //       tlCoin.to(coin.current.position, {
-    //         y: pos[1] + 2,
-    //         duration: 0.4,
-    //         ease: "back.out(4)",
-    //       });
-    //       tlCoin.to(coin.current.scale, {
-    //         x: 0,
-    //         y: 0,
-    //         z: 0,
-    //         duration: 0.12,
-    //         ease: "expo.out",
-    //       });
-    //     } else {
-    //       gsap.to(mush.current.position, {
-    //         y: pos[1] + 1,
-    //         duration: 0.4,
-    //         ease: "none",
-    //         onComplete: () => {
-    //           setAnimateMushroom(true);
-    //         },
-    //       });
-    //     }
-    //   }
+          tlCoin.to(coin.current.position, {
+            y: pos[1] + 2,
+            duration: 0.4,
+            ease: "back.out(4)",
+          });
+          tlCoin.to(coin.current.scale, {
+            x: 0,
+            y: 0,
+            z: 0,
+            duration: 0.12,
+            ease: "expo.out",
+          });
+        } else {
+          gsap.to(mush.current.position, {
+            y: pos[1] + 1,
+            duration: 0.4,
+            ease: "none",
+            onComplete: () => {
+              setAnimateMushroom(true);
+            },
+          });
+        }
+      }
   }, [isHit]);
 
   // useFrame(() => {
@@ -90,21 +90,20 @@ export const QuestionBlock = ({ pos, mushroom }) => {
   //   mushRB.current.setLinvel({ x: 0, y: 0, z: -10 })
   //   mush.current.position.set(vec3(mushRB.current.translation()));
   // });
-  // useFrame(() => {
-  //   if (!animateMushroom) return;
+  useFrame(() => {
+    if (!animateMushroom) return;
 
-  //   mushRB.current.setLinvel({
-  //     x: mushRB.current.linvel().x,
-  //     y: mushRB.current.linvel().y,
-  //     z: hitPipe ? -4 : 4,
-  //   });
+    mushRB.current.setLinvel({
+      x: mushRB.current.linvel().x,
+      y: mushRB.current.linvel().y,
+      z: hitPipe ? -4 : 4,
+    });
 
-  //   // console.log(mush.current.position);
-  // });
-  if (!nodes) return null;
+    // console.log(mush.current.position);
+  });
   return (
     <>
-      <RigidBody type="fixed" friction={0}>
+      <RigidBody type="fixed" >
         {/* <group position={pos} ref={group}>
           <mesh
             geometry={nodes.BlockQuestion__BlockQuestionMat00.geometry}
@@ -124,7 +123,7 @@ export const QuestionBlock = ({ pos, mushroom }) => {
           />
         </group> */}
 
-        <group position={pos} ref={group} dispose={null}>
+        <group position={pos} ref={group} >
           <mesh
             castShadow
             geometry={nodes.BlockQuestion__BlockQuestionMat00020.geometry}
@@ -209,7 +208,7 @@ export const QuestionBlock = ({ pos, mushroom }) => {
           <Mushroom />
         </mesh>
       )}
-      {/* <BlockEmpty position={pos} showEmptyBlock={showEmptyBlock} /> */}
+      <BlockEmpty position={pos} showEmptyBlock={showEmptyBlock} />
     </>
   );
 };
