@@ -57,6 +57,9 @@ function App() {
   useEffect(() => {
     const prevPoints = localStorage.getItem("megicPoints") || 1000;
     useMegicStore.setState({ megicPoints: prevPoints });
+
+    const hasCrown = localStorage.getItem("hasCrown") || false;
+    useMegicStore.setState({ hasCrown: hasCrown });
   }, []);
   return (
     <RootContainer>

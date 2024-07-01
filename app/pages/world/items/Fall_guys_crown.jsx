@@ -11,8 +11,8 @@ Title: Fall Guys Crown
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/fall_guys_crown-transformed.glb')
+export function Crown(props) {
+  const { nodes, materials } = useGLTF('models/fall_guys_crown-transformed.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Object_4.geometry} material={materials['Material.001']} scale={[1.347, 1, 1.347]} />
@@ -22,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/fall_guys_crown-transformed.glb')
+useGLTF.preload('models/fall_guys_crown-transformed.glb')
