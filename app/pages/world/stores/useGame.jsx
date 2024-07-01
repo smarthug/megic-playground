@@ -97,5 +97,8 @@ export default create(subscribeWithSelector((set) =>
         setAlive: (alive) => set({ alive }),
         gameStarted: false,
         setGameStarted: (gameStarted) => set({ gameStarted }),
+
+        hasCrown: false,
+        setHasCrown: (hasCrown) => set({ hasCrown }),
     }
 }))

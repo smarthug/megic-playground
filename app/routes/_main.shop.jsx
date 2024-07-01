@@ -1,7 +1,7 @@
-export default function Shop() {
+import Shop from '../pages/shop';
+
+export default function App() {
   return (
-    <div>
-      <h1>Shop</h1>
-    </div>
+    <Shop />
   );
 }
