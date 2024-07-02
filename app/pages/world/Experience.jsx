@@ -1,44 +1,45 @@
-import { Physics } from '@react-three/rapier'
-import Lights from './Lights.jsx'
+import { Physics } from "@react-three/rapier";
+import Lights from "./Lights.jsx";
 
 // import Effects from './Effects/Effects.jsx'
-import Player from './Player.jsx'
-import { useControls } from 'leva'
+import Player from "./Player.jsx";
+import { useControls } from "leva";
 
-import Map from './Map.jsx'
+import Map from "./Map.jsx";
 // import './Materials/Materials.jsx'
-import useGame from './stores/useGame.jsx'
-import { useEffect } from 'react'
+import useGame from "./stores/useGame.jsx";
+import { Suspense, useEffect } from "react";
 
-export default function Experience()
-{
-    const physicsSettings = useControls('physics', {
-        debug: { value: false },
-    })
+export default function Experience() {
+  const physicsSettings = useControls("physics", {
+    debug: { value: false },
+  });
 
-    const [ setStatus ] = useGame(state => [ state.setStatus ])
-    
-    useEffect(() =>
-    {
-        setTimeout(() =>
-        {
-            setStatus('started')
-        }, 100)
-    }, [])
+  const [setStatus] = useGame((state) => [state.setStatus]);
 
-    return <>
-    
-        {/* <Effects /> */}
+  useEffect(() => {
+    setTimeout(() => {
+      setStatus("started");
+    }, 100);
+  }, []);
 
-        {/* <color args={ [ '#111111' ] } attach="background" /> */}
+  return (
+    <>
+      {/* <Effects /> */}
 
-        {/* <Perf position="top-left" /> */}
+      {/* <color args={ [ '#111111' ] } attach="background" /> */}
 
-        <Physics timeStep="vary" debug={ physicsSettings.debug } gravity={ [ 0, - 9.807 * 2, 0 ] }>
-            <Lights />
-            <Player />
-            <Map />
-        </Physics>
+      {/* <Perf position="top-left" /> */}
 
+      <Physics
+        timeStep="vary"
+        debug={physicsSettings.debug}
+        gravity={[0, -9.807 * 2, 0]}
+      >
+        <Lights />
+        <Map />
+        <Player />
+      </Physics>
     </>
+  );
 }
