@@ -6,6 +6,7 @@ import { styled } from "@mui/system";
 import { Outlet } from "@remix-run/react";
 import { useEffect } from "react";
 import { useMegicStore } from "../utils/useMegicStore";
+import useGame from '../pages/world/stores/useGame'
 
 // const RootContainer = styled(Container)({
 //   height: "100vh",
@@ -59,7 +60,8 @@ function App() {
     useMegicStore.setState({ megicPoints: prevPoints });
 
     const hasCrown = localStorage.getItem("hasCrown") || false;
-    useMegicStore.setState({ hasCrown: hasCrown });
+    const tmp = hasCrown === "true";
+    useGame.setState({ hasCrown: tmp });
   }, []);
   return (
     <RootContainer>
