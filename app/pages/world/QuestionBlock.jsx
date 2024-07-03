@@ -14,8 +14,13 @@ import { Coin } from "./items/Coin";
 import { Mushroom } from "./items/Mushroom";
 import { useFrame } from "@react-three/fiber";
 import { PositionalAudio, useGLTF } from "@react-three/drei";
+import { useMegicStore } from "../../utils/useMegicStore";
 
 export const QuestionBlock = ({ pos, mushroom }) => {
+  const increaseMegicPointByNumber = useMegicStore(
+    (state) => state.increaseMegicPointByNumber
+  );
+
   const { nodes, materials } = useGLTF("models/qb-transformed.glb");
   const group = useRef();
   const [isHit, setIsHit] = useState(false);
@@ -68,6 +73,8 @@ export const QuestionBlock = ({ pos, mushroom }) => {
             duration: 0.12,
             ease: "expo.out",
           });
+
+          giveCoin();
         } else {
           gsap.to(mush.current.position, {
             y: pos[1] + 1,
@@ -80,6 +87,29 @@ export const QuestionBlock = ({ pos, mushroom }) => {
         }
       }
   }, [isHit]);
+
+  function giveCoin() {
+    console.log("coin");
+
+    let prize = 0;
+
+    const random = Math.random() * 100;
+
+    if (random < 50.0) {
+      prize = 1000;
+    } else if (random < 50.0 + 33.1) {
+      prize = 2000;
+    } else if (random < 50.0 + 33.1 + 10.2) {
+      prize = 5000;
+    } else if (random < 50.0 + 33.1 + 10.2 + 5.1) {
+      prize = 10000;
+    } else {
+      prize = 100000;
+    }
+
+    increaseMegicPointByNumber(prize);
+    localStorage.setItem("megicPoints", useMegicStore.getState().megicPoints);
+  }
 
   // useFrame(() => {
   //   if(!mushRB.current) return;
@@ -109,9 +139,7 @@ export const QuestionBlock = ({ pos, mushroom }) => {
   });
   return (
     <>
-      <RigidBody type="fixed"
-      friction={1}
-      >
+      <RigidBody type="fixed" friction={1}>
         {/* <group position={pos} ref={group}>
           <mesh
             geometry={nodes.BlockQuestion__BlockQuestionMat00.geometry}
@@ -131,7 +159,7 @@ export const QuestionBlock = ({ pos, mushroom }) => {
           />
         </group> */}
 
-        <group position={pos} ref={group} >
+        <group position={pos} ref={group}>
           <mesh
             castShadow
             geometry={nodes.BlockQuestion__BlockQuestionMat00020.geometry}
@@ -151,7 +179,7 @@ export const QuestionBlock = ({ pos, mushroom }) => {
         sensor
         position={pos}
         onIntersectionEnter={(e) => {
-          console.log(e)
+          console.log(e);
           if (e.other.rigidBodyObject.name === "player" && !isHit) {
             setIsHit(true);
           }

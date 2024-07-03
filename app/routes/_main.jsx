@@ -6,7 +6,7 @@ import { styled } from "@mui/system";
 import { Outlet } from "@remix-run/react";
 import { useEffect } from "react";
 import { useMegicStore } from "../utils/useMegicStore";
-import useGame from '../pages/world/stores/useGame'
+import useGame from "../pages/world/stores/useGame";
 
 // const RootContainer = styled(Container)({
 //   height: "100vh",
@@ -36,9 +36,9 @@ const ContentBox = styled(Box)({
   alignItems: "center",
   flexDirection: "column",
   overflow: "hidden",
-//   backgroundColor: "lightblue",
+  //   backgroundColor: "lightblue",
 
-marginTop: "56px",
+  marginTop: "56px",
 });
 
 // export const Experience = () => {
@@ -54,7 +54,6 @@ marginTop: "56px",
 // };
 
 function App() {
-
   useEffect(() => {
     const prevPoints = localStorage.getItem("megicPoints") || 1000;
     useMegicStore.setState({ megicPoints: prevPoints });
@@ -62,6 +61,11 @@ function App() {
     const hasCrown = localStorage.getItem("hasCrown") || false;
     const tmp = hasCrown === "true";
     useGame.setState({ hasCrown: tmp });
+
+    return () => {
+      console.log("cleanup");
+      localStorage.setItem("megicPoints", useMegicStore.getState().megicPoints);
+    };
   }, []);
   return (
     <RootContainer>
