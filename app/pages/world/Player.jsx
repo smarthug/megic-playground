@@ -83,7 +83,7 @@ export default function Player() {
             camCollision={false}
 
 
-            maxVelLimit={3}
+            maxVelLimit={5}
             turnVelMultiplier={1}
             turnSpeed={90}
             moveImpulsePointY={0.2}

@@ -8,7 +8,38 @@ import { Oolong } from "./Oolong";
 
 import { QuestionBlock } from "./QuestionBlock";
 
+import Pomodoro from "./Pomodoro";
+
 export default function Floor({ size = 10 }) {
+
+  const { animation, timeScale } = useControls({
+    animation: {
+      value: 'idle',
+      options: [
+        'idle',
+        'idleattack',
+        'idlecarryitem',
+        'jump',
+        'run',
+        'runattack',
+        'runcarryitem',
+        'walk',
+        'walkattack',
+        'walkcarryitem',
+      ],
+    },
+    timeScale: {
+      value: 0.7,
+      min: 0,
+      max: 1,
+      step: 0.1,
+    },
+    axie: {
+      value: 'buba',
+      options: ['pomodoro', 'puffy'],
+    },
+  })
+  
   const settings = useControls("floor", {
     color: { value: "#2a2a2a" },
   });
@@ -41,6 +72,12 @@ export default function Floor({ size = 10 }) {
       </Suspense>
       {/* <QuestionBlock pos={[0, 0, 0]} mushroom={random} /> */}
       <QuestionBlock pos={[0, 0, 0]} mushroom={false} />
+      <Pomodoro
+        animation={animation.toString()}
+        outline={{ color: 'black', opacity: 1, thickness: 0.03 }}
+        position={[-2, 0, 0]}
+        timeScale={timeScale}
+      />
     </>
   );
 }
