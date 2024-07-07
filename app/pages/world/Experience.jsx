@@ -40,5 +40,9 @@ export default function Experience()
             <Map />
         </Physics>
 
+        <color attach="background" args={["#cdf9ff"]} />
+        <fog attach="fog" args={["#cdf9ff", 1, 200]} />
+        {/* <fog attach="fog" args={["#501899", 5, 20]} /> */}
+
     </>
 }

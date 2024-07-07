@@ -7,7 +7,7 @@ import { Oolong } from "./Oolong";
 
 import { QuestionBlock } from "./QuestionBlock";
 
-import { Html, useProgress } from '@react-three/drei'
+import { Html, useProgress, Preload } from '@react-three/drei'
 
 import Pomodoro from "./Pomodoro";
 import Buba from "./Buba";
@@ -107,6 +107,7 @@ export default function Floor({ size = 10 }) {
       </Suspense>
       {/* <QuestionBlock pos={[0, 0, 0]} mushroom={random} /> */}
       <QuestionBlock pos={[0, 0, 0]} mushroom={false} />
+      <Preload all />
     </>
   );
 }
