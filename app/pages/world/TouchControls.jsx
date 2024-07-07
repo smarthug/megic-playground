@@ -26,10 +26,25 @@ export default function TouchControls() {
   const passiveMaterial = useMemo(
     () =>
       new MeshBasicMaterial({
+        color: 0x000000,
+        transparent: true,
+        opacity: 0.3,
+      }),
+    []
+  );
+
+  const passiveMaterial2 = useMemo(
+    () =>
+      new MeshBasicMaterial({
         color: 0xffffff,
         transparent: true,
-        opacity: 0.1,
+        opacity: 0.3,
       }),
+    []
+  );
+
+  const activeMaterial2 = useMemo(
+    () => new MeshBasicMaterial({ color: 0xff5722, wireframe: false }),
     []
   );
 
@@ -54,12 +69,12 @@ export default function TouchControls() {
       buttonLargeBaseProps={{
         scale: new Vector3(4, 4, 4),
         geometry: boxGeometry,
-        material: passiveMaterial,
+        material: passiveMaterial2,
       }}
       buttonTop1Props={{
         scale: new Vector3(2, 2, 2),
         geometry: boxGeometry,
-        material: activeMaterial,
+        material: activeMaterial2,
       }}
     />
   );
