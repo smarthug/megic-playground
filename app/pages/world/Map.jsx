@@ -7,9 +7,16 @@ import { Oolong } from "./Oolong";
 
 import { QuestionBlock } from "./QuestionBlock";
 
+import { Html, useProgress } from '@react-three/drei'
+
 import Pomodoro from "./Pomodoro";
 import Buba from "./Buba";
 import Puffy from "./Puffy";
+
+function Loader() {
+  const { progress } = useProgress()
+  return <Html center>{progress} % loaded</Html>
+}
 
 export default function Floor({ size = 10 }) {
   const { animation, timeScale } = useControls({
@@ -64,39 +71,42 @@ export default function Floor({ size = 10 }) {
         <meshLambertMaterial dithering  />
       </mesh> */}
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader/>}>
         {/* <Tent scale={0.015} position-y={1.5} /> */}
         {/* <Oolong scale={0.5} position-z={-55} /> */}
         <Oolong scale={3} position-z={-9} position-y={-3} />
         {/* <QuestionBlock scale={0.5} position-z={-9} position-y={-3} /> */}
+        <RigidBody
+          // enabledRotations={[false, false, true]}
+          enabledRotations={[false, true, false]}
+        >
+          <Pomodoro
+            animation={animation.toString()}
+            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
+            position={[-2, 0, 0]}
+            timeScale={timeScale}
+          />
+        </RigidBody>
+        <RigidBody enabledRotations={[false, true, false]}>
+          <Buba
+            animation={animation.toString()}
+            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
+            position={[-2, 0, 3]}
+            timeScale={timeScale}
+          />
+        </RigidBody>
+
+        <RigidBody enabledRotations={[false, true, false]}>
+          <Puffy
+            animation={animation.toString()}
+            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
+            position={[-4, 0, 3]}
+            timeScale={timeScale}
+          />
+        </RigidBody>
       </Suspense>
       {/* <QuestionBlock pos={[0, 0, 0]} mushroom={random} /> */}
       <QuestionBlock pos={[0, 0, 0]} mushroom={false} />
-      <RigidBody>
-        <Pomodoro
-          animation={animation.toString()}
-          outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-          position={[-2, 0, 0]}
-          timeScale={timeScale}
-        />
-      </RigidBody>
-      <RigidBody>
-        <Buba
-          animation={animation.toString()}
-          outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-          position={[-2, 0, 3]}
-          timeScale={timeScale}
-        />
-      </RigidBody>
-
-      <RigidBody>
-        <Puffy
-          animation={animation.toString()}
-          outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-          position={[-4, 0, 3]}
-          timeScale={timeScale}
-        />
-      </RigidBody>
     </>
   );
 }
