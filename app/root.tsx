@@ -18,6 +18,8 @@ import { theme } from "./styles/theme";
 // import { ThemeProvider } from "@mui/material";
 import { CssBaseline,ThemeProvider } from "@mui/material";
 
+import { useSWEffect } from '@remix-pwa/sw'
+
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
@@ -42,6 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useSWEffect()
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
