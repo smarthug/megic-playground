@@ -16,9 +16,9 @@ import "@fontsource/roboto/700.css";
 import { theme } from "./styles/theme";
 
 // import { ThemeProvider } from "@mui/material";
-import { CssBaseline,ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import { useSWEffect,ManifestLink } from '@remix-pwa/sw'
+import { useSWEffect, ManifestLink } from "@remix-pwa/sw";
 
 export const links = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -31,7 +31,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <ManifestLink />
+        {/* <link rel="manifest" href="/manifest.json" /> */}
+        {/* <ManifestLink /> */}
         <Links />
       </head>
       <body>
@@ -45,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  useSWEffect()
+  useSWEffect();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

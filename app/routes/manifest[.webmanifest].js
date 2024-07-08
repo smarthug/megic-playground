@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 
-export const clientLoader = () => {
+export const loader = () => {
   return json(
     {
       short_name: "MEGIC",
