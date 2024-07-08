@@ -1,7 +1,6 @@
-import type { WebAppManifest } from "@remix-pwa/dev";
 import { json } from "@remix-run/node";
 
-export const loader = () => {
+export const clientLoader = () => {
   return json(
     {
       short_name: "MEGIC",
@@ -17,7 +16,7 @@ export const loader = () => {
           sizes: "512x512",
         },
       ],
-    } as WebAppManifest,
+    },
     {
       headers: {
         "Cache-Control": "public, max-age=600",
