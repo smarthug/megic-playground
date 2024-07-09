@@ -28,6 +28,7 @@
     "@remix-pwa/worker-runtime": "^2.1.2",
     "@remix-run/node": "^2.9.2",
     "@remix-run/react": "^2.9.2",
+    "@twa-dev/sdk": "^7.0.0",
     "animejs": "^3.2.2",
     "cannon-es": "^0.20.0",
     "ecctrl": "^1.0.45",
