@@ -32,6 +32,7 @@ export default function Table(props) {
             setIsScored(true)
             increaseScore()
             increaseMegicPoints()
+            localStorage.setItem("megicPoints", useMegicStore.getState().megicPoints);
             useGame.setState({ isScored: true })
         }
     }

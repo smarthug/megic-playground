@@ -69,6 +69,7 @@ const App = () => {
   const incrementPopCount = () => {
     // useMegicStore.setState({megicPoints: megicPoints + 10});
     increaseMegicPointByOne();
+    localStorage.setItem("megicPoints", useMegicStore.getState().megicPoints);
     const newCount = popCount + 1;
     setPopCount(newCount);
     setCookie("pop_count", newCount, 365);

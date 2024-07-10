@@ -63,7 +63,7 @@ function App() {
     useGame.setState({ hasCrown: tmp });
 
     return () => {
-      console.log("cleanup");
+      console.log("_main unmount");
       localStorage.setItem("megicPoints", useMegicStore.getState().megicPoints);
     };
   }, []);

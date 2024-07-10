@@ -37,16 +37,32 @@ function DrawerAppBar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+  function handleListItemClick(event, index) {
+    console.log(event.target.key)
+    console.log(index)
+    console.log("clicked");
+
+    alert("wip")
+  }
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MEGIC
+        hello@megic.xyz
       </Typography>
       <Divider />
       <List>
-        <ListItem key={"discord"} disablePadding>
+        <ListItem onClick={handleListItemClick}  key={"discord"} disablePadding>
+          <ListItemButton
+            
+            sx={{ textAlign: "center" }}
+          >
+            <ListItemText primary={"Discord"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem onClick={handleListItemClick} key={"telegram"} disablePadding>
           <ListItemButton sx={{ textAlign: "center" }}>
-            <ListItemText primary={"discord"} />
+            <ListItemText primary={"Telegram"} />
           </ListItemButton>
         </ListItem>
       </List>
@@ -92,17 +108,14 @@ function DrawerAppBar(props) {
     </Menu>
   );
 
-
-
-
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       minimumFractionDigits: 0, // 소수점을 원하지 않으면 이 줄을 추가하세요.
     }).format(amount);
   };
-  
+
   const UserMoneyDisplay = ({ amount }) => {
     return (
       <Typography variant="h5" component="span" sx={{ flexGrow: 1 }}>
@@ -110,8 +123,6 @@ function DrawerAppBar(props) {
       </Typography>
     );
   };
-
-
 
   return (
     <>
@@ -124,7 +135,7 @@ function DrawerAppBar(props) {
             edge="start"
             onClick={handleDrawerToggle}
             // sx={{ mr: 2, display: { sm: "none" } }}
-            sx={{ mr: 2}}
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
