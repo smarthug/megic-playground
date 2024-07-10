@@ -11,6 +11,7 @@ import { hydrateRoot } from "react-dom/client";
 import WebApp from '@twa-dev/sdk'
 
 WebApp.ready();
+WebApp.expand();
 
 startTransition(() => {
   hydrateRoot(
