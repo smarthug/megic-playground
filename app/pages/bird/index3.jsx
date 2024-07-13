@@ -1,29 +1,22 @@
-import React, { useRef, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from "@react-three/fiber";
+// import { Experience } from "./components/Experience";
 
-const TwoDCanvas = () => {
-  const canvasRef = useRef(null);
+import { OrbitControls } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
-  // useEffect(() => {
-  //   const canvas = canvasRef.current;
-  //   const ctx = canvas.getContext('2d');
-  //   if (ctx) {
-  //     // Your 2D canvas drawing code here
-  //     ctx.fillStyle = 'red';
-  //     ctx.fillRect(10, 10, 100, 100);
-  //   }
-  // }, []);
-
+export const Experience = ({tt}) => {
+  const {gl} = useThree();
+  console.log(tt)
+  // const canvasRef = useRef();
 
   useEffect(() => {
     // SELECT CANVAS
     // const cvs = gl.domElement;
-    const cvs = canvasRef.current;
+    const cvs = tt.current
     console.log(cvs)
-    const ctx = cvs.getContext("2d");
     // const ctx = gl.domElement.getContext("2d");
-    // const ctx = tt.current.getContext("2d");
-    // console.log(ctx)
+    const ctx = tt.current.getContext("2d");
+    console.log(ctx)
 
     // GAME VARIABLES AND CONSTANTS
     let frames = 0;
@@ -39,7 +32,6 @@ const TwoDCanvas = () => {
     // LOAD SPRITE SHEET
     const sprite_sheet = new Image();
     sprite_sheet.src = "imgs/sprite_sheet.png"
-    console.log(sprite_sheet)
 
     // LOAD SOUNDS
     const DIE = new Audio();
@@ -1378,7 +1370,7 @@ const TwoDCanvas = () => {
     // CANVAS SCALE
     function canvasScale() {
       // CANVAS HEIGHT & WIDTH
-      // cvs.height = window.innerHeight - 2;
+      cvs.height = window.innerHeight - 2;
       // cvs.height = window.innerHeight - 200;
       cvs.width = cvs.height * 0.72 - 2;
 
@@ -1606,27 +1598,31 @@ const TwoDCanvas = () => {
 
 
 
-  }, [canvasRef]);
+  }, [gl]);
 
-  // return <canvas ref={canvasRef} width={300} height={300}  style={{ position: 'absolute', top: 0, left: 0 , width:"100%", height:"100%"}} />;
-  return <canvas ref={canvasRef} width={300} height={300}  style={{ position: 'absolute', top: 0, left: 0 }} />;
+  return (
+    <>
+      {/* <OrbitControls />
+      <mesh>
+        <boxGeometry />
+        <meshNormalMaterial />
+      </mesh> */}
+    </>
+  );
 };
 
-const ThreeDCanvas = () => {
+function App() {
+  const canvasRef = useRef(null);
+  
   return (
-    <Canvas>
-      {/* Your 3D canvas content here */}
+
+    <Canvas ref={canvasRef}  shadows camera={{ position: [3, 3, 3], fov: 30 }}>
+        <Experience tt={canvasRef} />
     </Canvas>
-  );
-};
 
-const App = () => {
-  return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <ThreeDCanvas />
-      <TwoDCanvas />
-    </div>
   );
-};
+}
 
 export default App;
+
+
