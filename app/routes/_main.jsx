@@ -39,6 +39,7 @@ const ContentBox = styled(Box)({
   //   backgroundColor: "lightblue",
 
   marginTop: "56px",
+  marginBottom: "56px",
 });
 
 // export const Experience = () => {

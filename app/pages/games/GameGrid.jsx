@@ -15,8 +15,8 @@ const games = [
   { src: "imgs/basket.png", alt: "Game 3", link: "/basket" },
   // { src: "imgs/suika.png", alt: "Game 4", link: "/chohan" },
   // { src: "imgs/penguin.png", alt: "Game 5", link: "/chohan" },
-  { src: 'imgs/wip.png', alt: '' },
-  { src: 'imgs/wip.png', alt: '' },
+  { src: 'imgs/wip.png', alt: 'Game4',link: "/bird" },
+  { src: 'imgs/wip.png', alt: '', link:"https://birdmmo.sbcode.net/" },
   // { src: 'link-to-image8', alt: 'Game 8' },
   // { src: 'link-to-image9', alt: 'Game 9' },
 ];
