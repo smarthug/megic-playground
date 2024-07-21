@@ -10,7 +10,7 @@ const items = [
     id: 1,
     name: "The Crown",
     description: "A crown that grants the wearer unlimited power",
-    price: 1000,
+    price: 100000,
     // image: 'https://via.placeholder.com/150',
     image: "/imgs/crown.png",
   },

@@ -9,9 +9,7 @@ import { QuestionBlock } from "./QuestionBlock";
 
 import { Html, useProgress, Preload } from '@react-three/drei'
 
-import Pomodoro from "./Pomodoro";
-import Buba from "./Buba";
-import Puffy from "./Puffy";
+
 
 function Loader() {
   const { progress } = useProgress()
@@ -76,37 +74,10 @@ export default function Floor({ size = 10 }) {
         {/* <Oolong scale={0.5} position-z={-55} /> */}
         <Oolong scale={3} position-z={-9} position-y={-3} />
         {/* <QuestionBlock scale={0.5} position-z={-9} position-y={-3} /> */}
-        <RigidBody
-          // enabledRotations={[false, false, true]}
-          enabledRotations={[false, true, false]}
-        >
-          <Pomodoro
-            animation={animation.toString()}
-            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-            position={[-2, 0, 0]}
-            timeScale={timeScale}
-          />
-        </RigidBody>
-        <RigidBody enabledRotations={[false, true, false]}>
-          <Buba
-            animation={animation.toString()}
-            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-            position={[-2, 0, 3]}
-            timeScale={timeScale}
-          />
-        </RigidBody>
-
-        <RigidBody enabledRotations={[false, true, false]}>
-          <Puffy
-            animation={animation.toString()}
-            outline={{ color: "black", opacity: 1, thickness: 0.03 }}
-            position={[-4, 0, 3]}
-            timeScale={timeScale}
-          />
-        </RigidBody>
+      
       </Suspense>
       {/* <QuestionBlock pos={[0, 0, 0]} mushroom={random} /> */}
-      <QuestionBlock pos={[0, 0, 0]} mushroom={false} />
+      <QuestionBlock pos={[0, 0, 0]} mushroom={random} />
       <Preload all />
     </>
   );
