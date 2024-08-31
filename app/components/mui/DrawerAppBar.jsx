@@ -20,6 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 // import { useMegicStore } from "../../utils/useMegicStore";
 import { useMegicStore } from "../../utils/useMegicStore";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 const drawerWidth = 240;
 // const navItems = ['Home', 'About', 'Contact'];
 
@@ -187,7 +188,8 @@ function DrawerAppBar(props) {
                 <NotificationsIcon />
               </Badge>
             </IconButton> */}
-            <IconButton
+            <ConnectButton />
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -197,7 +199,8 @@ function DrawerAppBar(props) {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
+            
           </Box>
         </Toolbar>
       </AppBar>
