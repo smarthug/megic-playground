@@ -1,6 +1,7 @@
 // src/components/ItemCard.js
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import {MintButton} from './MintButton';
 
 const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
@@ -33,6 +34,7 @@ const ItemCard = ({ item, onPurchase }) => {
         <Button variant="contained" color="primary" onClick={() => onPurchase(item)}>
           Purchase
         </Button>
+        <MintButton />
       </CardContent>
     </Card>
   );
