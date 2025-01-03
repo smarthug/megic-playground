@@ -8,6 +8,7 @@ import { useMegicStore } from "../../utils/useMegicStore";
 import {
   useWriteContract,
   useWaitForTransactionReceipt,
+  useAccount,
 } from 'wagmi';
 
 import { abi } from '../../utils/abi';
@@ -36,7 +37,8 @@ const App = () => {
   // Transaction hooks
   const { data: hash, writeContract, isPending, error } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
-
+  const account = useAccount();
+  // console.log(account.address)
 
   const setHasCrown = useGame((state) => state.setHasCrown);
   const [purchasedItems, setPurchasedItems] = useState([]);
@@ -52,14 +54,14 @@ const App = () => {
     }
 
     // if (!identityInstance) return;
-    // const provider = identityInstance.getEthereumProvider();
-
+    // const provider = identityInstance.getEthereumProvider({policy:"pol_eda2b5b6-f928-461b-8f40-ad570ee2d482"});
+    
 
     writeContract({
       abi,
       address: '0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3',
       functionName: 'mint',
-      args: ['0xA4C8F3Ed647F3aA84011da72d0f3E20DB2Bfa69D', 0, 1, ""],
+      args: [account.address, 0, 1, ""],
     });
 
 
