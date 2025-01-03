@@ -71,14 +71,14 @@ export default function Player() {
     >
         <Ecctrl
             ref={ref}
-            position={[0, 1, - 2]}
+            position={[0, 3, - 2]}
             debug={false}
             capsuleRadius={0.4}
 
             camInitDis={- 35}
             camMaxDis={- 135}
             // 이게 라디안으로 바뀜 최신 버전에서는
-            camInitDir={{ x: - 0.5, y: Math.PI, z: 0 }}
+            camInitDir={{ x: 0, y: Math.PI, z: 0 }}
             camTargetPos={{ x: 0, y: 0, z: 0 }}
             camCollision={false}
 
