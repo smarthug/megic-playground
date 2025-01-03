@@ -34,7 +34,7 @@ const ItemCard = ({ item, onPurchase }) => {
         <Button variant="contained" color="primary" onClick={() => onPurchase(item)}>
           Purchase
         </Button>
-        <MintButton />
+        {/* <MintButton /> */}
       </CardContent>
     </Card>
   );

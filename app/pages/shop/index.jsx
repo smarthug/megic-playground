@@ -5,12 +5,20 @@ import ItemCard from "./ItemCard";
 import useGame from "../world/stores/useGame";
 import { useMegicStore } from "../../utils/useMegicStore";
 
+import {
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from 'wagmi';
+
+import { abi } from '../../utils/abi';
+
+
 const items = [
   {
     id: 1,
     name: "The Crown",
     description: "A crown that grants the wearer unlimited power",
-    price: 100000,
+    price: 1000,
     // image: 'https://via.placeholder.com/150',
     image: "/imgs/crown.png",
   },
@@ -25,6 +33,11 @@ const items = [
 ];
 
 const App = () => {
+  // Transaction hooks
+  const { data: hash, writeContract, isPending, error } = useWriteContract();
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+
+
   const setHasCrown = useGame((state) => state.setHasCrown);
   const [purchasedItems, setPurchasedItems] = useState([]);
   const megicPoints = useMegicStore((state) => state.megicPoints);
@@ -38,12 +51,26 @@ const App = () => {
       return;
     }
 
+    // if (!identityInstance) return;
+    // const provider = identityInstance.getEthereumProvider();
+
+
+    writeContract({
+      abi,
+      address: '0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3',
+      functionName: 'mint',
+      args: ['0xA4C8F3Ed647F3aA84011da72d0f3E20DB2Bfa69D', 0, 1, ""],
+    });
+
+
+
     setHasCrown(true);
     localStorage.setItem("hasCrown", true);
 
     setPurchasedItems([...purchasedItems, item]);
     decreaseMegicPointByNumber(item.price);
-    alert(`Purchased ${item.name}`);
+    // alert(`Purchased ${item.name}`);
+
   };
 
   return (
