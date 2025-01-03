@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useMegicStore } from "../utils/useMegicStore";
 import useGame from "../pages/world/stores/useGame";
 
-import {identityInstance} from '../config';
+
 
 // const RootContainer = styled(Container)({
 //   height: "100vh",
@@ -71,11 +71,7 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!identityInstance) return;
-    const tes = identityInstance.getEthereumProvider();
-    console.log("tes", tes);
-  }, []);
+ 
   return (
     <RootContainer>
       <DrawerAppBar />
