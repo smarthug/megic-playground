@@ -11,10 +11,11 @@ Megic consists of three main components:
 3. **Shop**: Players can use the Megic Points they earn to purchase items. All items are ERC1155 NFTs, and purchased items can be utilized within the World.
 
 
+## Contract Address
+* Ancient8 Testnet ERC1155 - 0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3
+* https://scanv2-testnet.ancient8.gg/address/0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3
 
-# templates/spa
 
-This template leverages [Remix SPA Mode](https://remix.run/docs/en/main/guides/spa-mode) and the [Remix Vite Plugin](https://remix.run/docs/en/main/guides/vite) to build your app as a Single-Page Application using [Client Data](https://remix.run/docs/en/main/guides/client-data) for all of your data loads and mutations.
 
 ## Setup
 
