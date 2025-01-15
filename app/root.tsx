@@ -21,15 +21,15 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
-import { ancient8Sepolia } from "wagmi/chains";
+import {  filecoinCalibration,polygonAmoy } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-
+console.log(polygonAmoy)
 
 const config = getDefaultConfig({
-  appName: "My RainbowKit App",
+  appName: "Megic.xyz",
   projectId: "fc8b5ed20be8c39819928d4a45318f7e",
-  chains: [ancient8Sepolia],
+  chains: [polygonAmoy],
   ssr: false, // If your dApp uses server side rendering (SSR)
 });
 
