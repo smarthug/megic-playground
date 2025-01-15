@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import ItemCard from "./ItemCard";
 import useGame from "../world/stores/useGame";
@@ -13,6 +13,7 @@ import {
 
 import { abi } from '../../utils/abi';
 
+import { identityInstance } from '../../utils/openfort';
 
 const items = [
   {
@@ -35,44 +36,78 @@ const items = [
 
 const App = () => {
   // Transaction hooks
-  const { data: hash, writeContract, isPending, error } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
-  const account = useAccount();
-  // console.log(account.address)
+  // const { data: hash, writeContract, isPending, error } = useWriteContract();
+  // const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+  // const account = useAccount();
+  // // console.log(account.address)
 
-  const setHasCrown = useGame((state) => state.setHasCrown);
-  const [purchasedItems, setPurchasedItems] = useState([]);
-  const megicPoints = useMegicStore((state) => state.megicPoints);
-  const decreaseMegicPointByNumber = useMegicStore(
-    (state) => state.decreaseMegicPointByNumber
-  );
+  // const setHasCrown = useGame((state) => state.setHasCrown);
+  // const [purchasedItems, setPurchasedItems] = useState([]);
+  // const megicPoints = useMegicStore((state) => state.megicPoints);
+  // const decreaseMegicPointByNumber = useMegicStore(
+  //   (state) => state.decreaseMegicPointByNumber
+  // );
 
-  const handlePurchase = (item) => {
-    if (megicPoints < item.price) {
-      alert("Not enough megic points!");
-      return;
+  // const handlePurchase = (item) => {
+  //   if (megicPoints < item.price) {
+  //     alert("Not enough megic points!");
+  //     return;
+  //   }
+
+  //   // if (!identityInstance) return;
+  //   // const provider = identityInstance.getEthereumProvider({policy:"pol_eda2b5b6-f928-461b-8f40-ad570ee2d482"});
+
+
+  //   writeContract({
+  //     abi,
+  //     address: '0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3',
+  //     functionName: 'mint',
+  //     args: [account.address, 0, 1, ""],
+  //   });
+
+
+
+  //   setHasCrown(true);
+  //   localStorage.setItem("hasCrown", true);
+
+  //   setPurchasedItems([...purchasedItems, item]);
+  //   decreaseMegicPointByNumber(item.price);
+  //   // alert(`Purchased ${item.name}`);
+
+  // };
+
+  const handlePurchase = async (item) => {
+
+
+    if (!identityInstance) return;
+    const provider = identityInstance.getEthereumProvider({ policy: "pol_66c41f0f-bc1a-4ec5-80a2-d9ad45b57cc7" });
+    console.log(provider)
+
+
+    // writeContract({
+    //   abi,
+    //   address: '0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3',
+    //   functionName: 'mint',
+    //   args: [account.address, 0, 1, ""],
+    // });
+
+
+    const mint = async () => {
+     
+        const [address] = await provider.request({
+          method: 'eth_requestAccounts',
+        });
+        console.log(address);
+        const balance = await provider.request({
+          method: 'eth_getBalance',
+          params: [address, 'latest'],
+        })
+        console.log(balance);
+        // handleSuccess(address);
+    
     }
 
-    // if (!identityInstance) return;
-    // const provider = identityInstance.getEthereumProvider({policy:"pol_eda2b5b6-f928-461b-8f40-ad570ee2d482"});
-    
-
-    writeContract({
-      abi,
-      address: '0x93a61eD85dD4585beC75e0cDa76d713ddBb6F6b3',
-      functionName: 'mint',
-      args: [account.address, 0, 1, ""],
-    });
-
-
-
-    setHasCrown(true);
-    localStorage.setItem("hasCrown", true);
-
-    setPurchasedItems([...purchasedItems, item]);
-    decreaseMegicPointByNumber(item.price);
-    // alert(`Purchased ${item.name}`);
-
+    mint();
   };
 
   return (
